@@ -1,0 +1,36 @@
+<svg width="1200" height="720" viewBox="0 0 1200 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="720" fill="#F7DFC1"/>
+  <path d="M0 210C150 150 340 130 510 160C660 186 830 246 980 214C1064 196 1130 168 1200 150V0H0V210Z" fill="#F5A623"/>
+  <path d="M0 286C146 234 304 226 460 254C636 286 776 350 956 334C1038 326 1118 302 1200 270V170C1116 210 1036 236 954 242C776 256 640 188 462 160C302 136 146 142 0 194V286Z" fill="#FFD27A"/>
+  <rect x="0" y="300" width="1200" height="420" fill="#7ABF58"/>
+  <rect x="0" y="410" width="1200" height="310" fill="#68AB49"/>
+  <path d="M0 470H1200" stroke="#8ED169" stroke-width="8" stroke-dasharray="18 16"/>
+  <path d="M0 540H1200" stroke="#8ED169" stroke-width="8" stroke-dasharray="18 16"/>
+  <path d="M0 610H1200" stroke="#8ED169" stroke-width="8" stroke-dasharray="18 16"/>
+
+  <rect x="760" y="332" width="220" height="128" fill="#7D4B2A"/>
+  <polygon points="730,332 870,250 1010,332" fill="#9A5A31"/>
+  <rect x="840" y="382" width="48" height="78" fill="#D8AE6E"/>
+  <rect x="772" y="346" width="42" height="30" fill="#D8AE6E"/>
+  <rect x="928" y="346" width="42" height="30" fill="#D8AE6E"/>
+
+  <rect x="738" y="312" width="22" height="156" fill="#5A3A22"/>
+  <rect x="980" y="312" width="22" height="156" fill="#5A3A22"/>
+
+  <rect x="162" y="290" width="20" height="212" fill="#6E4123"/>
+  <path d="M172 300C226 250 286 250 342 300C286 304 230 316 172 352C124 314 104 288 72 246C114 236 144 246 172 300Z" fill="#3F8C46"/>
+  <rect x="1042" y="274" width="18" height="194" fill="#6E4123"/>
+  <path d="M1050 282C1104 232 1160 230 1218 278C1162 284 1110 300 1050 334C1000 298 980 268 946 232C990 222 1020 232 1050 282Z" fill="#3F8C46"/>
+
+  <ellipse cx="258" cy="535" rx="44" ry="24" fill="#FFFFFF"/>
+  <circle cx="292" cy="524" r="12" fill="#FFFFFF"/>
+  <polygon points="306,524 322,520 306,532" fill="#E3A235"/>
+  <circle cx="296" cy="521" r="2.5" fill="#2F1A09"/>
+
+  <ellipse cx="368" cy="572" rx="44" ry="24" fill="#FFFFFF"/>
+  <circle cx="402" cy="561" r="12" fill="#FFFFFF"/>
+  <polygon points="416,561 432,557 416,569" fill="#E3A235"/>
+  <circle cx="406" cy="558" r="2.5" fill="#2F1A09"/>
+
+  <text x="58" y="80" fill="#4D280D" font-family="Arial, sans-serif" font-size="38" font-weight="700">Cambodia Countryside Duck Farm</text>
+</svg>

@@ -5,7 +5,77 @@
 
 @theme {
     --font-sans:
-        'Instrument Sans', ui-sans-serif, system-ui, sans-serif,
+        'IBM Plex Sans', ui-sans-serif, system-ui, sans-serif,
         'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
         'Noto Color Emoji';
+}
+
+.duck-body {
+    font-family: 'IBM Plex Sans', ui-sans-serif, system-ui, sans-serif;
+}
+
+.duck-display {
+    font-family: 'Playfair Display', ui-serif, Georgia, serif;
+}
+
+@keyframes duckDrift {
+    0% {
+        transform: translate3d(0, 0, 0);
+    }
+
+    50% {
+        transform: translate3d(0, -18px, 0);
+    }
+
+    100% {
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+@keyframes duckRise {
+    0% {
+        transform: translateY(0);
+        opacity: 0.18;
+    }
+
+    50% {
+        opacity: 0.34;
+    }
+
+    100% {
+        transform: translateY(-20px);
+        opacity: 0.18;
+    }
+}
+
+@keyframes duckReveal {
+    0% {
+        transform: translateY(10px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.duck-drift {
+    animation: duckDrift 14s ease-in-out infinite;
+}
+
+.duck-rise {
+    animation: duckRise 12s ease-in-out infinite;
+}
+
+.duck-reveal {
+    animation: duckReveal 650ms ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .duck-drift,
+    .duck-rise,
+    .duck-reveal {
+        animation: none;
+    }
 }
