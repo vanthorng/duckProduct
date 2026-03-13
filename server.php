@@ -19,16 +19,52 @@ if ($forwardedHost !== '') {
     $_SERVER['SERVER_NAME'] = $forwardedHost;
 }
 
+function detectMimeType(string $filePath): string
+{
+    $extension = strtolower(pathinfo($filePath, PATHINFO_EXTENSION));
+
+    $mimeTypes = [
+        'css' => 'text/css; charset=utf-8',
+        'gif' => 'image/gif',
+        'ico' => 'image/x-icon',
+        'jpg' => 'image/jpeg',
+        'jpeg' => 'image/jpeg',
+        'js' => 'application/javascript; charset=utf-8',
+        'json' => 'application/json; charset=utf-8',
+        'map' => 'application/json; charset=utf-8',
+        'mjs' => 'application/javascript; charset=utf-8',
+        'png' => 'image/png',
+        'svg' => 'image/svg+xml; charset=utf-8',
+        'txt' => 'text/plain; charset=utf-8',
+        'webp' => 'image/webp',
+        'woff' => 'font/woff',
+        'woff2' => 'font/woff2',
+    ];
+
+    if (isset($mimeTypes[$extension])) {
+        return $mimeTypes[$extension];
+    }
+
+    $detectedMimeType = mime_content_type($filePath);
+
+    if (is_string($detectedMimeType) && $detectedMimeType !== '') {
+        return $detectedMimeType;
+    }
+
+    return 'application/octet-stream';
+}
+
 $publicPath = __DIR__.'/public';
 $requestUri = $_SERVER['REQUEST_URI'] ?? '/';
 $uri = urldecode(parse_url($requestUri, PHP_URL_PATH) ?: '/');
 $filePath = $publicPath.$uri;
 
 if ($uri !== '/' && is_file($filePath)) {
-    $mimeType = mime_content_type($filePath) ?: 'application/octet-stream';
+    $mimeType = detectMimeType($filePath);
     $fileSize = filesize($filePath);
 
     header('Content-Type: '.$mimeType);
+    header('X-Content-Type-Options: nosniff');
 
     if (is_int($fileSize)) {
         header('Content-Length: '.(string) $fileSize);
