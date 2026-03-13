@@ -12,9 +12,19 @@ type ContactCard = {
 
 const farmAddressUrl = 'https://maps.app.goo.gl/CW45YwZcPjAbgVh19';
 
+const locationPhotoOne =
+    'https://commons.wikimedia.org/wiki/Special:FilePath/Cambodia%20Rice%20Fields%20%289728041389%29.jpg';
+const locationPhotoTwo =
+    'https://commons.wikimedia.org/wiki/Special:FilePath/Cambodia%20Rice%20Fields%20%289728065269%29.jpg';
+
 type WorkHour = {
     day: string;
     hours: string;
+};
+
+type LocationFeature = {
+    label: string;
+    value: string;
 };
 
 export default function ContactLocation() {
@@ -53,6 +63,27 @@ export default function ContactLocation() {
             day: t('contact.hours.day3'),
             hours: t('contact.hours.time3'),
         },
+    ];
+
+    const locationFeatures: LocationFeature[] = [
+        {
+            label: t('contact.location.feature.pickup.label'),
+            value: t('contact.location.feature.pickup.value'),
+        },
+        {
+            label: t('contact.location.feature.delivery.label'),
+            value: t('contact.location.feature.delivery.value'),
+        },
+        {
+            label: t('contact.location.feature.support.label'),
+            value: t('contact.location.feature.support.value'),
+        },
+    ];
+
+    const accessNotes = [
+        t('contact.location.access.note1'),
+        t('contact.location.access.note2'),
+        t('contact.location.access.note3'),
     ];
 
     return (
@@ -100,7 +131,7 @@ export default function ContactLocation() {
                 })}
             </section>
 
-            <section className="grid gap-5 lg:grid-cols-[1.2fr_0.8fr]">
+            <section className="grid gap-5 lg:grid-cols-[1.25fr_0.75fr]">
                 <article className="duck-panel p-6 sm:p-7">
                     <h2 className="duck-display text-3xl text-[#341d0b]">
                         {t('contact.location.title')}
@@ -117,13 +148,70 @@ export default function ContactLocation() {
                         </a>
                     </p>
 
-                    <div className="duck-drift mt-5 overflow-hidden rounded-3xl border border-[#cfb08c] bg-[linear-gradient(145deg,#f5e5d1,#fff8ee)] p-3">
-                        <img
-                            src="/images/cambodia-duck-farm.svg"
-                            alt={t('contact.location.imageAlt')}
-                            className="h-full w-full rounded-2xl object-cover"
-                        />
+                    <div className="mt-5 grid gap-4 xl:grid-cols-[1.2fr_0.8fr]">
+                        <figure className="relative overflow-hidden rounded-3xl border border-[#cfb08c] bg-white p-2 shadow-[0_18px_36px_rgba(62,34,11,0.14)]">
+                            <img
+                                src={locationPhotoOne}
+                                alt={t('contact.location.photoAlt1')}
+                                className="h-72 w-full rounded-2xl object-cover"
+                            />
+                            <figcaption className="absolute right-5 bottom-5 left-5 rounded-xl bg-[#2f190be0] px-4 py-2 text-xs font-medium tracking-[0.03em] text-[#f9e8d2] sm:text-sm">
+                                {t('contact.location.photoCaption1')}
+                            </figcaption>
+                        </figure>
+                        <div className="grid gap-4">
+                            <figure className="relative overflow-hidden rounded-2xl border border-[#cfb08c] bg-white p-2">
+                                <img
+                                    src={locationPhotoTwo}
+                                    alt={t('contact.location.photoAlt2')}
+                                    className="h-36 w-full rounded-xl object-cover sm:h-40"
+                                />
+                                <figcaption className="absolute right-4 bottom-4 left-4 rounded-lg bg-[#2f190bcf] px-3 py-1.5 text-xs text-[#f9e8d2]">
+                                    {t('contact.location.photoCaption2')}
+                                </figcaption>
+                            </figure>
+
+                            <div className="rounded-2xl border border-[#d6bc9d] bg-[#fff6ea] p-4">
+                                <p className="text-xs font-semibold tracking-[0.14em] text-[#8b562f] uppercase">
+                                    {t('contact.location.access.title')}
+                                </p>
+                                <ul className="mt-3 space-y-2 text-sm text-[#5f3d25]">
+                                    {accessNotes.map((note) => {
+                                        return (
+                                            <li
+                                                key={note}
+                                                className="rounded-xl border border-[#e8d4bb] bg-white px-3 py-2"
+                                            >
+                                                {note}
+                                            </li>
+                                        );
+                                    })}
+                                </ul>
+                            </div>
+                        </div>
                     </div>
+
+                    <div className="mt-4 grid gap-3 sm:grid-cols-3">
+                        {locationFeatures.map((feature) => {
+                            return (
+                                <div
+                                    key={feature.label}
+                                    className="rounded-2xl border border-[#dac4a9] bg-[#fffdf8] px-4 py-3"
+                                >
+                                    <p className="text-[0.72rem] font-semibold tracking-[0.14em] text-[#8d5a33] uppercase">
+                                        {feature.label}
+                                    </p>
+                                    <p className="mt-1 text-sm font-semibold text-[#4a2c16]">
+                                        {feature.value}
+                                    </p>
+                                </div>
+                            );
+                        })}
+                    </div>
+
+                    <p className="mt-3 text-xs text-[#7d5332]">
+                        {t('contact.location.realPhotoNote')}
+                    </p>
 
                     <a
                         href={farmAddressUrl}
@@ -157,6 +245,10 @@ export default function ContactLocation() {
                             );
                         })}
                     </ul>
+
+                    <p className="mt-5 text-sm text-[#f3d2b1]">
+                        {t('contact.hours.visitHint')}
+                    </p>
 
                     <Link
                         href="/order-online"

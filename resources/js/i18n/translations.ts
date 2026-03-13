@@ -1,4 +1,4 @@
-﻿export type Locale = 'en' | 'km';
+export type Locale = 'en' | 'km';
 
 export const translations: Record<Locale, Record<string, string>> = {
     en: {
@@ -196,6 +196,30 @@ export const translations: Record<Locale, Record<string, string>> = {
         'contact.location.label': 'Farm Address :',
         'contact.location.button': 'Open farm address in Google Maps',
         'contact.location.imageAlt': 'Cambodia-inspired duck farm illustration',
+        'contact.location.photoAlt1':
+            'Real Cambodia countryside rice fields near duck farm area',
+        'contact.location.photoAlt2':
+            'Real Cambodia farm access landscape near local fields',
+        'contact.location.photoCaption1':
+            'Real Cambodia countryside view near the farm access route.',
+        'contact.location.photoCaption2':
+            'Real Cambodia rural landscape around local farm zones.',
+        'contact.location.access.title': 'Access notes',
+        'contact.location.access.note1':
+            'Use the Google Maps link above for the fastest route.',
+        'contact.location.access.note2':
+            'Motorbike, tuk-tuk, car, and small truck can access the farm road.',
+        'contact.location.access.note3':
+            'Please call 20-30 minutes before arrival for quick handover.',
+        'contact.location.feature.pickup.label': 'Farm pickup',
+        'contact.location.feature.pickup.value': 'Daily slots available',
+        'contact.location.feature.delivery.label': 'Delivery zone',
+        'contact.location.feature.delivery.value':
+            'Phnom Penh and selected nearby districts',
+        'contact.location.feature.support.label': 'Sales support',
+        'contact.location.feature.support.value': 'Phone, Telegram, and email',
+        'contact.location.realPhotoNote':
+            'Photo references are real Cambodia countryside scenes and are used to reflect the farm environment style.',
         'contact.hours.title': 'Working hours',
         'contact.hours.day1': 'Monday - Friday',
         'contact.hours.day2': 'Saturday',
@@ -203,6 +227,8 @@ export const translations: Record<Locale, Record<string, string>> = {
         'contact.hours.time1': '06:00 AM - 06:00 PM',
         'contact.hours.time2': '06:30 AM - 05:00 PM',
         'contact.hours.time3': '08:00 AM - 12:00 PM',
+        'contact.hours.visitHint':
+            'For faster service, please share your visit time before arrival.',
         'contact.hours.cta': 'Continue to online order',
     },
     km: {
@@ -395,6 +421,31 @@ export const translations: Record<Locale, Record<string, string>> = {
         'contact.location.label': 'អាសយដ្ឋានកសិដ្ឋាន :',
         'contact.location.button': 'បើកទីតាំងកសិដ្ឋានក្នុង Google Maps',
         'contact.location.imageAlt': 'រូបភាពកសិដ្ឋានទាបែបកម្ពុជា',
+        'contact.location.photoAlt1':
+            'រូបភាពពិតតំបន់ជនបទកម្ពុជា ក្បែរទីតាំងកសិដ្ឋានទា',
+        'contact.location.photoAlt2':
+            'រូបភាពពិតទិដ្ឋភាពផ្លូវចូលកសិដ្ឋាននៅជនបទកម្ពុជា',
+        'contact.location.photoCaption1':
+            'រូបភាពពិតនៅជនបទកម្ពុជា ក្បែរផ្លូវចូលតំបន់កសិដ្ឋាន។',
+        'contact.location.photoCaption2':
+            'រូបភាពពិតបរិយាកាសជនបទកម្ពុជា ជុំវិញតំបន់កសិកម្ម។',
+        'contact.location.access.title': 'ព័ត៌មានផ្លូវចូល',
+        'contact.location.access.note1':
+            'សូមប្រើតំណ Google Maps ខាងលើ ដើម្បីទៅដល់បានលឿនជាងគេ។',
+        'contact.location.access.note2':
+            'ម៉ូតូ តុកតុក រថយន្ត និងរថយន្តតូច អាចចូលដល់ផ្លូវកសិដ្ឋានបាន។',
+        'contact.location.access.note3':
+            'សូមទូរស័ព្ទមុនមកដល់ 20-30 នាទី ដើម្បីរៀបចំទទួលទំនិញឲ្យរហ័ស។',
+        'contact.location.feature.pickup.label': 'យកពីកសិដ្ឋាន',
+        'contact.location.feature.pickup.value': 'មានពេលទទួលទំនិញរៀងរាល់ថ្ងៃ',
+        'contact.location.feature.delivery.label': 'តំបន់ដឹកជញ្ជូន',
+        'contact.location.feature.delivery.value':
+            'ភ្នំពេញ និងស្រុកក្បែរខាងដែលបានកំណត់',
+        'contact.location.feature.support.label': 'គាំទ្រការលក់',
+        'contact.location.feature.support.value':
+            'ទូរស័ព្ទ តេឡេក្រាម និងអ៊ីមែល',
+        'contact.location.realPhotoNote':
+            'រូបភាពយោងគឺជាទិដ្ឋភាពពិតនៅជនបទកម្ពុជា ដើម្បីបង្ហាញបរិយាកាសកសិដ្ឋានជាក់ស្តែង។',
         'contact.hours.title': 'ម៉ោងធ្វើការ',
         'contact.hours.day1': 'ចន្ទ - សុក្រ',
         'contact.hours.day2': 'សៅរ៍',
@@ -402,6 +453,8 @@ export const translations: Record<Locale, Record<string, string>> = {
         'contact.hours.time1': '06:00 ព្រឹក - 06:00 ល្ងាច',
         'contact.hours.time2': '06:30 ព្រឹក - 05:00 ល្ងាច',
         'contact.hours.time3': '08:00 ព្រឹក - 12:00 ថ្ងៃត្រង់',
+        'contact.hours.visitHint':
+            'ដើម្បីទទួលសេវារហ័ស សូមជូនដំណឹងម៉ោងមកដល់មុនពេលធ្វើដំណើរ។',
         'contact.hours.cta': 'បន្តទៅបញ្ជាទិញអនឡាញ',
     },
 };
