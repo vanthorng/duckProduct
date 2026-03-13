@@ -1,6 +1,7 @@
 import { Link } from '@inertiajs/react';
 
 import DuckSiteLayout from '@/components/duck-site-layout';
+import { useI18n } from '@/i18n/context';
 
 type Product = {
     category: string;
@@ -10,91 +11,84 @@ type Product = {
     price: string;
 };
 
-const products: Product[] = [
-    {
-        category: 'Eggs',
-        name: 'Fresh Duck Eggs',
-        description:
-            'Cleaned and graded eggs with rich yolk color, ideal for home cooking and baking.',
-        packaging: 'Tray of 30 eggs / bulk crate options',
-        price: '$4.80 - $5.60 per tray',
-    },
-    {
-        category: 'Meat',
-        name: 'Premium Duck Meat Cuts',
-        description:
-            'Breast, thigh, and whole duck options prepared with strict cold-chain handling.',
-        packaging: '1kg vacuum pack / whole duck by weight',
-        price: '$7.50 - $11.20 per kg',
-    },
-    {
-        category: 'Roasted',
-        name: 'House Roasted Duck',
-        description:
-            'Slow roasted with a savory glaze and aromatic herbs, ready for immediate serving.',
-        packaging: 'Whole roasted duck / half cut set',
-        price: '$16.00 - $24.00 per duck',
-    },
-    {
-        category: 'Fertilizer',
-        name: 'Duck Droppings Herb (Sack)',
-        description:
-            'Fermented duck droppings herb fertilizer for vegetables, herbs, and crop enrichment.',
-        packaging: 'Sack 25kg / Sack 50kg',
-        price: '$6.00 - $10.00 per sack',
-    },
-];
-
-const whyChooseUs: string[] = [
-    'Daily freshness checks before packing.',
-    'Reliable stock for repeat business customers.',
-    'Simple wholesale pricing for larger volumes.',
-    'Fast support via phone, chat, and online form.',
-];
-
 export default function DuckProducts() {
+    const { t } = useI18n();
+
+    const products: Product[] = [
+        {
+            category: t('products.item.eggs.category'),
+            name: t('products.item.eggs.name'),
+            description: t('products.item.eggs.desc'),
+            packaging: t('products.item.eggs.packaging'),
+            price: t('products.item.eggs.price'),
+        },
+        {
+            category: t('products.item.meat.category'),
+            name: t('products.item.meat.name'),
+            description: t('products.item.meat.desc'),
+            packaging: t('products.item.meat.packaging'),
+            price: t('products.item.meat.price'),
+        },
+        {
+            category: t('products.item.roasted.category'),
+            name: t('products.item.roasted.name'),
+            description: t('products.item.roasted.desc'),
+            packaging: t('products.item.roasted.packaging'),
+            price: t('products.item.roasted.price'),
+        },
+        {
+            category: t('products.item.herb.category'),
+            name: t('products.item.herb.name'),
+            description: t('products.item.herb.desc'),
+            packaging: t('products.item.herb.packaging'),
+            price: t('products.item.herb.price'),
+        },
+    ];
+
+    const whyChooseUs: string[] = [
+        t('products.why.point1'),
+        t('products.why.point2'),
+        t('products.why.point3'),
+        t('products.why.point4'),
+    ];
+
     return (
-        <DuckSiteLayout title="Duck Products">
-            <section className="duck-reveal rounded-4xl border border-[#d8c5ab] bg-white/90 p-7 sm:p-10">
-                <p className="text-sm font-semibold tracking-[0.2em] text-[#925124] uppercase">
-                    Duck products
-                </p>
+        <DuckSiteLayout title={t('nav.products')}>
+            <section className="duck-panel duck-reveal p-7 sm:p-10">
+                <p className="duck-kicker">{t('products.kicker')}</p>
                 <h1 className="duck-display mt-3 text-4xl text-[#2f1a09] sm:text-5xl">
-                    Eggs, meat, roasted duck, and herb sacks for daily demand.
+                    {t('products.title')}
                 </h1>
                 <p className="mt-4 max-w-3xl text-base text-[#6d492f] sm:text-lg">
-                    Choose from retail-ready packs or wholesale quantities.
-                    Every order is prepared with clear labels, handling dates,
-                    and practical packaging options.
+                    {t('products.subtitle')}
                 </p>
             </section>
 
-            <section className="mt-8 grid gap-4 lg:grid-cols-[1.1fr_0.9fr]">
-                <article className="duck-reveal rounded-4xl border border-[#ddc9ae] bg-[#fff9f1] p-6">
-                    <h2 className="duck-display text-3xl text-[#3a220d] sm:text-4xl">
-                        New product available
+            <section className="grid gap-4 lg:grid-cols-[1.1fr_0.9fr]">
+                <article className="duck-panel duck-reveal p-6">
+                    <p className="duck-kicker">{t('products.new.kicker')}</p>
+                    <h2 className="duck-display mt-2 text-3xl text-[#3a220d] sm:text-4xl">
+                        {t('products.new.title')}
                     </h2>
                     <p className="mt-3 text-sm leading-7 text-[#6f4d34]">
-                        Duck Droppings Herb is now listed and sold by sack for
-                        farm and garden use. Available in 25kg and 50kg sacks
-                        for small growers or wholesale buyers.
+                        {t('products.new.desc')}
                     </p>
                 </article>
-                <figure className="duck-reveal overflow-hidden rounded-4xl border border-[#ddc9ae] bg-white p-3">
+                <figure className="duck-soft-card duck-reveal overflow-hidden p-3">
                     <img
                         src="/images/cambodia-market-sacks.svg"
-                        alt="Cambodia-style market supply sacks"
+                        alt={t('products.imageAlt')}
                         className="h-full w-full rounded-3xl object-cover"
                     />
                 </figure>
             </section>
 
-            <section className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+            <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
                 {products.map((product, index) => {
                     return (
                         <article
                             key={product.name}
-                            className="duck-reveal rounded-3xl border border-[#ddc9ae] bg-[#fff9f1] p-6"
+                            className="duck-soft-card duck-reveal p-6"
                             style={{ animationDelay: `${140 + index * 130}ms` }}
                         >
                             <p className="text-xs font-semibold tracking-[0.14em] text-[#9f5f32] uppercase">
@@ -117,21 +111,21 @@ export default function DuckProducts() {
                 })}
             </section>
 
-            <section className="mt-10 rounded-4xl border border-[#d8c5ab] bg-[#2f1708] p-7 text-[#f8ead8] sm:p-8">
+            <section className="duck-panel-dark p-7 text-[#f8ead8] sm:p-8">
                 <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
                     <div>
-                        <p className="text-sm font-semibold tracking-[0.16em] text-[#f6c48b] uppercase">
-                            Why buyers choose us
+                        <p className="duck-kicker text-[#f6c48b]">
+                            {t('products.why.kicker')}
                         </p>
                         <h2 className="duck-display mt-2 text-3xl sm:text-4xl">
-                            Built for households and food businesses
+                            {t('products.why.title')}
                         </h2>
                     </div>
                     <Link
                         href="/contact-location"
-                        className="w-fit rounded-full border border-[#f6c48b] px-4 py-2 text-sm font-semibold text-[#f9d8b0] hover:bg-[#4a2712]"
+                        className="duck-btn-primary w-fit px-4 py-2 text-sm"
                     >
-                        Talk to sales
+                        {t('products.why.cta')}
                     </Link>
                 </div>
 

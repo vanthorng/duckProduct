@@ -10,12 +10,104 @@
         'Noto Color Emoji';
 }
 
+:root {
+    --duck-ink: #27180f;
+    --duck-clay: #7b4b2c;
+    --duck-gold: #f2a32a;
+    --duck-cream: #f7f0e4;
+    --duck-panel: #fffaf2;
+}
+
 .duck-body {
     font-family: 'IBM Plex Sans', ui-sans-serif, system-ui, sans-serif;
 }
 
+.duck-khmer {
+    font-family: 'Noto Sans Khmer', 'IBM Plex Sans', ui-sans-serif, sans-serif;
+}
+
 .duck-display {
     font-family: 'Playfair Display', ui-serif, Georgia, serif;
+}
+
+.duck-khmer .duck-display {
+    font-family: 'Noto Sans Khmer', 'IBM Plex Sans', ui-sans-serif, sans-serif;
+    font-weight: 700;
+}
+
+.duck-kicker {
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #8f562f;
+    font-size: 0.73rem;
+    font-weight: 700;
+}
+
+.duck-khmer .duck-kicker {
+    letter-spacing: 0.06em;
+}
+
+.duck-panel {
+    border: 1px solid #dec8ac;
+    background: linear-gradient(
+        160deg,
+        rgba(255, 251, 244, 0.96),
+        rgba(255, 245, 231, 0.92)
+    );
+    border-radius: 1.8rem;
+    box-shadow: 0 18px 45px rgba(86, 44, 15, 0.12);
+}
+
+.duck-panel-dark {
+    border: 1px solid #694223;
+    background: linear-gradient(160deg, #2f1708, #3c1f0c);
+    border-radius: 1.8rem;
+    box-shadow: 0 18px 45px rgba(32, 15, 5, 0.3);
+}
+
+.duck-soft-card {
+    border: 1px solid #e4d0b6;
+    border-radius: 1.4rem;
+    background: #fff;
+    box-shadow: 0 10px 28px rgba(74, 37, 10, 0.08);
+}
+
+.duck-btn-primary {
+    border-radius: 9999px;
+    background: #3f200a;
+    color: #fff;
+    font-weight: 600;
+    transition: background-color 200ms ease;
+}
+
+.duck-btn-primary:hover {
+    background: #5e3416;
+}
+
+.duck-btn-secondary {
+    border-radius: 9999px;
+    border: 1px solid #b58258;
+    background: #fff;
+    color: #5a3417;
+    font-weight: 600;
+    transition: background-color 200ms ease;
+}
+
+.duck-btn-secondary:hover {
+    background: #f7ead9;
+}
+
+.duck-field {
+    border: 1px solid #d4bea3;
+    border-radius: 0.8rem;
+    background: #fffaf3;
+    padding: 0.62rem 0.8rem;
+    font-size: 0.9rem;
+    outline: none;
+}
+
+.duck-field:focus {
+    box-shadow: 0 0 0 2px #d8a776;
 }
 
 @keyframes duckDrift {
