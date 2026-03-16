@@ -28,6 +28,14 @@ class Order extends Model
 
     public const STATUS_PENDING = 'pending';
 
+    public const STATUS_CONFIRMED = 'confirmed';
+
+    public const STATUS_PREPARING = 'preparing';
+
+    public const STATUS_COMPLETED = 'completed';
+
+    public const STATUS_CANCELLED = 'cancelled';
+
     /** @use HasFactory<OrderFactory> */
     use HasFactory;
 
@@ -94,6 +102,16 @@ class Order extends Model
     }
 
     /**
+     * Get the supported order statuses.
+     *
+     * @return list<string>
+     */
+    public static function statusKeys(): array
+    {
+        return array_keys(self::statusLabels());
+    }
+
+    /**
      * Get the product labels.
      *
      * @return array<string, string>
@@ -135,6 +153,22 @@ class Order extends Model
         ];
     }
 
+    /**
+     * Get the order status labels.
+     *
+     * @return array<string, string>
+     */
+    public static function statusLabels(): array
+    {
+        return [
+            self::STATUS_PENDING => 'Pending',
+            self::STATUS_CONFIRMED => 'Confirmed',
+            self::STATUS_PREPARING => 'Preparing',
+            self::STATUS_COMPLETED => 'Completed',
+            self::STATUS_CANCELLED => 'Cancelled',
+        ];
+    }
+
     public function reference(): string
     {
         return 'ORD-'.str_pad((string) $this->getKey(), 5, '0', STR_PAD_LEFT);
@@ -155,5 +189,10 @@ class Order extends Model
     {
         return self::fulfillmentTypeLabels()[$this->fulfillment_type]
             ?? $this->fulfillment_type;
+    }
+
+    public function statusLabel(): string
+    {
+        return self::statusLabels()[$this->status] ?? $this->status;
     }
 }

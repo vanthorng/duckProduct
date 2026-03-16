@@ -8,6 +8,13 @@ export type OrderContactMethod = 'phone' | 'telegram' | 'email';
 
 export type OrderFulfillmentType = 'pickup' | 'delivery';
 
+export type OrderStatus =
+    | 'pending'
+    | 'confirmed'
+    | 'preparing'
+    | 'completed'
+    | 'cancelled';
+
 export type OrderProductOption = {
     value: OrderProduct;
     labelKey: string;
@@ -15,7 +22,7 @@ export type OrderProductOption = {
     priceKey: string;
     packagingKey: string;
     categoryKey: string;
-    minimumUnitLabel: string;
+    minimumUnitKey: string;
 };
 
 export const ORDER_PRODUCTS: OrderProductOption[] = [
@@ -26,7 +33,7 @@ export const ORDER_PRODUCTS: OrderProductOption[] = [
         priceKey: 'products.item.eggs.price',
         packagingKey: 'products.item.eggs.packaging',
         categoryKey: 'products.item.eggs.category',
-        minimumUnitLabel: 'Tray of 30 eggs',
+        minimumUnitKey: 'products.minimumUnit.tray',
     },
     {
         value: 'premium-duck-meat-cuts',
@@ -35,7 +42,7 @@ export const ORDER_PRODUCTS: OrderProductOption[] = [
         priceKey: 'products.item.meat.price',
         packagingKey: 'products.item.meat.packaging',
         categoryKey: 'products.item.meat.category',
-        minimumUnitLabel: '1 kg pack',
+        minimumUnitKey: 'products.minimumUnit.kg',
     },
     {
         value: 'house-roasted-duck',
@@ -44,7 +51,7 @@ export const ORDER_PRODUCTS: OrderProductOption[] = [
         priceKey: 'products.item.roasted.price',
         packagingKey: 'products.item.roasted.packaging',
         categoryKey: 'products.item.roasted.category',
-        minimumUnitLabel: '1 whole duck',
+        minimumUnitKey: 'products.minimumUnit.duck',
     },
     {
         value: 'duck-droppings-herb-sack',
@@ -53,25 +60,33 @@ export const ORDER_PRODUCTS: OrderProductOption[] = [
         priceKey: 'products.item.herb.price',
         packagingKey: 'products.item.herb.packaging',
         categoryKey: 'products.item.herb.category',
-        minimumUnitLabel: '1 sack',
+        minimumUnitKey: 'products.minimumUnit.sack',
     },
 ];
 
 export const ORDER_CONTACT_METHODS: Array<{
     value: OrderContactMethod;
-    label: string;
+    labelKey: string;
 }> = [
-    { value: 'phone', label: 'Phone call' },
-    { value: 'telegram', label: 'Telegram' },
-    { value: 'email', label: 'Email' },
+    { value: 'phone', labelKey: 'order.contactMethod.phone' },
+    { value: 'telegram', labelKey: 'order.contactMethod.telegram' },
+    { value: 'email', labelKey: 'order.contactMethod.email' },
 ];
 
 export const ORDER_FULFILLMENT_TYPES: Array<{
     value: OrderFulfillmentType;
-    label: string;
+    labelKey: string;
 }> = [
-    { value: 'pickup', label: 'Farm pickup' },
-    { value: 'delivery', label: 'Local delivery' },
+    { value: 'pickup', labelKey: 'order.fulfillment.pickup' },
+    { value: 'delivery', labelKey: 'order.fulfillment.delivery' },
+];
+
+export const ORDER_STATUSES: OrderStatus[] = [
+    'pending',
+    'confirmed',
+    'preparing',
+    'completed',
+    'cancelled',
 ];
 
 export function isOrderProduct(value: string | null | undefined): value is OrderProduct {

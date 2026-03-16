@@ -1,5 +1,6 @@
 import { usePage } from '@inertiajs/react';
 
+import { useI18n } from '@/i18n/context';
 import { cn } from '@/lib/utils';
 import type { Site } from '@/types';
 
@@ -19,6 +20,7 @@ export default function QuickContactActions({
     compact = false,
 }: QuickContactActionsProps) {
     const { site } = usePage<{ site: Site }>().props;
+    const { t } = useI18n();
 
     const containerClassName =
         tone === 'dark'
@@ -33,17 +35,17 @@ export default function QuickContactActions({
     const actions = [
         {
             href: phoneHref(site.primaryPhone),
-            label: 'Call now',
+            label: t('quickActions.callNow'),
             target: undefined,
         },
         {
             href: site.telegramUrl,
-            label: 'Telegram order',
+            label: t('quickActions.telegramOrder'),
             target: '_blank',
         },
         {
             href: site.mapUrl,
-            label: 'Open Google Maps',
+            label: t('quickActions.openMap'),
             target: '_blank',
         },
     ];
@@ -60,14 +62,19 @@ export default function QuickContactActions({
             <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
                 <div>
                     <p className="text-[0.72rem] font-semibold tracking-[0.16em] uppercase text-[#9b6034]">
-                        Fast order actions
+                        {t('quickActions.kicker')}
                     </p>
                     <p className="mt-2 text-sm leading-6 sm:text-base">
-                        Reach the farm sales contact directly for pickup timing, delivery confirmation, or urgent stock checks.
+                        {t('quickActions.description')}
                     </p>
-                    <p className="mt-2 text-xs text-[#8a5d3a] sm:text-sm">
-                        Service zone: {site.serviceZone} | Response hours: {site.responseHours}
-                    </p>
+                    <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-xs text-[#8a5d3a] sm:text-sm">
+                        <span>
+                            {t('common.serviceZoneLabel')}: {t('business.serviceZoneValue')}
+                        </span>
+                        <span>
+                            {t('common.responseHoursLabel')}: {t('business.responseHoursValue')}
+                        </span>
+                    </div>
                 </div>
 
                 <div className="flex flex-wrap gap-3">

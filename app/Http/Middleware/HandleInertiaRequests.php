@@ -39,8 +39,9 @@ class HandleInertiaRequests extends Middleware
             ...parent::share($request),
             'name' => config('app.name'),
             'flash' => [
-                'orderSuccess' => $request->session()->get('orderSuccess'),
+                'orderSuccessKey' => $request->session()->get('orderSuccessKey'),
                 'orderReference' => $request->session()->get('orderReference'),
+                'dashboardSuccessKey' => $request->session()->get('dashboardSuccessKey'),
             ],
             'auth' => [
                 'user' => $request->user(),

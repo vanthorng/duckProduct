@@ -16,14 +16,13 @@ import type {
     OrderFulfillmentType,
     OrderProduct,
 } from '@/lib/order-options';
-import type { Flash, Site } from '@/types';
+import type { Flash } from '@/types';
 
 type OrderPageProps = {
     prefill: {
         product: string | null;
     };
     flash: Flash;
-    site: Site;
 };
 
 type OrderFormData = {
@@ -63,7 +62,7 @@ function createInitialFormData(product: string | null): OrderFormData {
 
 export default function OrderOnline() {
     const { t } = useI18n();
-    const { prefill, flash, site } = usePage<OrderPageProps>().props;
+    const { prefill, flash } = usePage<OrderPageProps>().props;
     const form = useForm<OrderFormData>(createInitialFormData(prefill.product));
 
     const syncPrefill = useEffectEvent((product: string | null) => {
@@ -96,39 +95,39 @@ export default function OrderOnline() {
 
     const serviceDetails: DetailCard[] = [
         {
-            title: 'Service zone',
-            detail: site.serviceZone,
+            title: t('common.serviceZoneLabel'),
+            detail: t('business.serviceZoneValue'),
         },
         {
-            title: 'Delivery days',
-            detail: site.deliveryDays.join(' | '),
+            title: t('common.deliveryDaysLabel'),
+            detail: t('business.deliveryDaysValue'),
         },
         {
-            title: 'Payment methods',
-            detail: site.paymentMethods.join(' | '),
+            title: t('common.paymentMethodsLabel'),
+            detail: t('business.paymentMethodsValue'),
         },
     ];
 
     const faqItems: DetailCard[] = [
         {
-            title: 'How quickly do you confirm new orders?',
-            detail: `Most order requests are reviewed during ${site.responseHours}. We confirm stock, timing, and total price after we receive your details.`,
+            title: t('order.faq1.title'),
+            detail: t('order.faq1.desc'),
         },
         {
-            title: 'Which areas can receive delivery?',
-            detail: `Delivery is available for ${site.serviceZone}. Pickup at the farm stays available for any order that has been confirmed first.`,
+            title: t('order.faq2.title'),
+            detail: t('order.faq2.desc'),
         },
         {
-            title: 'What should I enter for quantity?',
-            detail: 'Use the practical order unit for the product you need, such as trays, kilograms, ducks, or sacks. Clear quantities help us confirm price faster.',
+            title: t('order.faq3.title'),
+            detail: t('order.faq3.desc'),
         },
         {
-            title: 'Can restaurants or resellers order in bulk?',
-            detail: 'Yes. Use the notes field to mention wholesale volume, repeat scheduling, or packaging requirements for business orders.',
+            title: t('order.faq4.title'),
+            detail: t('order.faq4.desc'),
         },
         {
-            title: 'What happens after I submit?',
-            detail: 'We review the request, contact you using your preferred method, confirm availability, then lock pickup or delivery timing.',
+            title: t('order.faq5.title'),
+            detail: t('order.faq5.desc'),
         },
     ];
 
@@ -152,13 +151,13 @@ export default function OrderOnline() {
                     <div className="grid gap-3">
                         <div className="duck-soft-card p-5">
                             <p className="text-xs font-semibold tracking-[0.14em] text-[#9b6034] uppercase">
-                                Response window
+                                {t('order.responseWindow')}
                             </p>
                             <p className="duck-display mt-2 text-2xl text-[#3a220d]">
-                                {site.responseHours}
+                                {t('business.responseHoursValue')}
                             </p>
                             <p className="mt-2 text-sm text-[#6d4a31]">
-                                Use the form for full order details, or switch to direct contact when the order is urgent.
+                                {t('order.responseDescription')}
                             </p>
                         </div>
                         <QuickContactActions compact />
@@ -166,17 +165,17 @@ export default function OrderOnline() {
                 </div>
             </section>
 
-            {flash.orderSuccess ? (
+            {flash.orderSuccessKey ? (
                 <section className="rounded-[1.6rem] border border-[#c9a67d] bg-[#fff6ea] p-5 text-[#4d2b13] shadow-[0_14px_32px_rgba(85,45,16,0.12)]">
                     <p className="text-xs font-semibold tracking-[0.14em] text-[#9b6034] uppercase">
-                        Order request received
+                        {t('order.successTitle')}
                     </p>
                     <p className="mt-2 text-base font-semibold sm:text-lg">
-                        {flash.orderSuccess}
+                        {t(flash.orderSuccessKey)}
                     </p>
                     {flash.orderReference ? (
                         <p className="mt-2 text-sm text-[#6f4b31]">
-                            Reference: <strong>{flash.orderReference}</strong>
+                            {t('admin.dashboard.reference')}: <strong>{flash.orderReference}</strong>
                         </p>
                     ) : null}
                 </section>
@@ -204,10 +203,10 @@ export default function OrderOnline() {
             <section className="grid gap-5 lg:grid-cols-[1.15fr_0.85fr]">
                 <section className="duck-panel p-7 sm:p-8">
                     <h2 className="duck-display text-3xl text-[#321b0a] sm:text-4xl">
-                        Submit a real order request
+                        {t('order.realFormTitle')}
                     </h2>
                     <p className="mt-2 text-sm text-[#6c492f]">
-                        Share the product, quantity, and preferred timing so the farm can confirm the order in one follow-up.
+                        {t('order.realFormSubtitle')}
                     </p>
 
                     <form
@@ -221,7 +220,7 @@ export default function OrderOnline() {
                         }}
                     >
                         <label className="flex flex-col gap-1 text-sm text-[#5f3b20]">
-                            Full name
+                            {t('order.form.name')}
                             <input
                                 type="text"
                                 value={form.data.name}
@@ -235,7 +234,7 @@ export default function OrderOnline() {
                         </label>
 
                         <label className="flex flex-col gap-1 text-sm text-[#5f3b20]">
-                            Phone number
+                            {t('order.form.phone')}
                             <input
                                 type="tel"
                                 value={form.data.phone}
@@ -249,7 +248,7 @@ export default function OrderOnline() {
                         </label>
 
                         <label className="flex flex-col gap-1 text-sm text-[#5f3b20]">
-                            Email address
+                            {t('order.emailLabel')}
                             <input
                                 type="email"
                                 value={form.data.email}
@@ -263,7 +262,7 @@ export default function OrderOnline() {
                         </label>
 
                         <label className="flex flex-col gap-1 text-sm text-[#5f3b20]">
-                            Preferred contact method
+                            {t('order.contactMethodLabel')}
                             <select
                                 value={form.data.preferred_contact_method}
                                 onChange={(event) =>
@@ -277,7 +276,7 @@ export default function OrderOnline() {
                                 {ORDER_CONTACT_METHODS.map((method) => {
                                     return (
                                         <option key={method.value} value={method.value}>
-                                            {method.label}
+                                            {t(method.labelKey)}
                                         </option>
                                     );
                                 })}
@@ -290,7 +289,7 @@ export default function OrderOnline() {
                         </label>
 
                         <label className="flex flex-col gap-1 text-sm text-[#5f3b20]">
-                            Product type
+                            {t('order.form.productType')}
                             <select
                                 value={form.data.product}
                                 onChange={(event) =>
@@ -301,7 +300,7 @@ export default function OrderOnline() {
                                 }
                                 className="duck-field"
                             >
-                                <option value="">Choose a product</option>
+                                <option value="">{t('order.chooseProduct')}</option>
                                 {ORDER_PRODUCTS.map((product) => {
                                     return (
                                         <option key={product.value} value={product.value}>
@@ -311,8 +310,10 @@ export default function OrderOnline() {
                                 })}
                             </select>
                             <span className="text-xs text-[#8b5c39]">
-                                Minimum order unit:{' '}
-                                {selectedProduct?.minimumUnitLabel ?? 'Choose a product to see the practical order unit.'}
+                                {t('common.minimumUnitLabel')}:{' '}
+                                {selectedProduct
+                                    ? t(selectedProduct.minimumUnitKey)
+                                    : t('order.minimumUnitHint')}
                             </span>
                             {form.errors.product ? (
                                 <span className="text-xs text-[#a74224]">{form.errors.product}</span>
@@ -320,7 +321,7 @@ export default function OrderOnline() {
                         </label>
 
                         <label className="flex flex-col gap-1 text-sm text-[#5f3b20]">
-                            Quantity
+                            {t('order.form.quantity')}
                             <input
                                 type="text"
                                 value={form.data.quantity}
@@ -334,7 +335,7 @@ export default function OrderOnline() {
                         </label>
 
                         <label className="flex flex-col gap-1 text-sm text-[#5f3b20]">
-                            Fulfillment type
+                            {t('order.fulfillmentLabel')}
                             <select
                                 value={form.data.fulfillment_type}
                                 onChange={(event) =>
@@ -348,7 +349,7 @@ export default function OrderOnline() {
                                 {ORDER_FULFILLMENT_TYPES.map((type) => {
                                     return (
                                         <option key={type.value} value={type.value}>
-                                            {type.label}
+                                            {t(type.labelKey)}
                                         </option>
                                     );
                                 })}
@@ -361,7 +362,7 @@ export default function OrderOnline() {
                         </label>
 
                         <label className="flex flex-col gap-1 text-sm text-[#5f3b20]">
-                            Preferred date
+                            {t('order.preferredDateLabel')}
                             <input
                                 type="date"
                                 value={form.data.preferred_date}
@@ -378,7 +379,7 @@ export default function OrderOnline() {
                         </label>
 
                         <label className="flex flex-col gap-1 text-sm text-[#5f3b20]">
-                            Preferred time
+                            {t('order.preferredTimeLabel')}
                             <input
                                 type="time"
                                 value={form.data.preferred_time}
@@ -395,12 +396,12 @@ export default function OrderOnline() {
                         </label>
 
                         <label className="flex flex-col gap-1 text-sm text-[#5f3b20] md:col-span-2">
-                            Delivery address or landmark
+                            {t('order.addressLabel')}
                             <textarea
                                 rows={3}
                                 value={form.data.address}
                                 onChange={(event) => form.setData('address', event.target.value)}
-                                placeholder="Village, district, landmark, or pickup notes"
+                                placeholder={t('order.addressPlaceholder')}
                                 className="duck-field"
                             />
                             {form.errors.address ? (
@@ -409,7 +410,7 @@ export default function OrderOnline() {
                         </label>
 
                         <label className="flex flex-col gap-1 text-sm text-[#5f3b20] md:col-span-2">
-                            Delivery notes
+                            {t('order.form.notes')}
                             <textarea
                                 rows={4}
                                 value={form.data.notes}
@@ -427,33 +428,31 @@ export default function OrderOnline() {
                             disabled={form.processing}
                             className="duck-btn-primary w-full px-5 py-3 text-sm disabled:cursor-not-allowed disabled:opacity-70 md:col-span-2"
                         >
-                            {form.processing ? 'Submitting order...' : 'Submit order request'}
+                            {form.processing ? t('order.submitting') : t('order.submit')}
                         </button>
                     </form>
                 </section>
 
                 <div className="grid gap-4">
                     <section className="duck-panel-dark p-6 text-[#faecda] sm:p-7">
-                        <h2 className="duck-display text-3xl">
-                            How ordering works
-                        </h2>
+                        <h2 className="duck-display text-3xl">{t('order.how.title')}</h2>
                         <ul className="mt-4 space-y-3 text-sm text-[#f3d2b1]">
                             <li className="rounded-2xl border border-[#664427] bg-[#3d1f0d] px-4 py-3">
-                                1. Submit your order with the product, quantity, and timing.
+                                {t('order.how.step1')}
                             </li>
                             <li className="rounded-2xl border border-[#664427] bg-[#3d1f0d] px-4 py-3">
-                                2. The farm confirms availability, price, and delivery or pickup timing.
+                                {t('order.how.step2')}
                             </li>
                             <li className="rounded-2xl border border-[#664427] bg-[#3d1f0d] px-4 py-3">
-                                3. You receive a direct follow-up on your preferred contact channel.
+                                {t('order.how.step3')}
                             </li>
                         </ul>
                     </section>
 
                     <section className="duck-panel p-6 sm:p-7">
-                        <p className="duck-kicker">Before you submit</p>
+                        <p className="duck-kicker">{t('order.beforeSubmit')}</p>
                         <h2 className="duck-display mt-2 text-3xl text-[#341d0b]">
-                            Order details buyers usually ask for
+                            {t('order.detailsTitle')}
                         </h2>
                         <div className="mt-5 grid gap-3">
                             {serviceDetails.map((detail) => {
@@ -477,9 +476,9 @@ export default function OrderOnline() {
             </section>
 
             <section className="duck-panel p-7 sm:p-8">
-                <p className="duck-kicker">FAQ</p>
+                <p className="duck-kicker">{t('common.faq')}</p>
                 <h2 className="duck-display mt-2 text-3xl text-[#341d0b] sm:text-4xl">
-                    Answers that help customers order faster
+                    {t('order.faq.title')}
                 </h2>
                 <div className="mt-6 grid gap-4 lg:grid-cols-2">
                     {faqItems.map((item, index) => {

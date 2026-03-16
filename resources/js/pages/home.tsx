@@ -1,10 +1,9 @@
-import { Link, usePage } from '@inertiajs/react';
+import { Link } from '@inertiajs/react';
 
 import DuckSiteLayout from '@/components/duck-site-layout';
 import QuickContactActions from '@/components/quick-contact-actions';
 import { useI18n } from '@/i18n/context';
 import { contactLocation, duckProducts, orderOnline } from '@/routes';
-import type { Site } from '@/types';
 
 type Highlight = {
     label: string;
@@ -35,7 +34,6 @@ type GalleryItem = {
 
 export default function Home() {
     const { t } = useI18n();
-    const { site } = usePage<{ site: Site }>().props;
 
     const highlights: Highlight[] = [
         {
@@ -110,16 +108,16 @@ export default function Home() {
 
     const trustCards: InfoCard[] = [
         {
-            title: 'Direct farm response',
-            description: `Use the online order form or direct contact during ${site.responseHours} for fast confirmation.`,
+            title: t('home.trust.card1.title'),
+            description: t('home.trust.card1.desc'),
         },
         {
-            title: 'Clear delivery zone',
-            description: `Orders are handled for ${site.serviceZone} with pickup still available for confirmed orders.`,
+            title: t('home.trust.card2.title'),
+            description: t('home.trust.card2.desc'),
         },
         {
-            title: 'Built for repeat buyers',
-            description: 'Households, food stalls, restaurants, resellers, and growers can all order through one consistent process.',
+            title: t('home.trust.card3.title'),
+            description: t('home.trust.card3.desc'),
         },
     ];
 
@@ -337,19 +335,19 @@ export default function Home() {
             <section className="duck-panel-dark p-7 text-[#f8ead7] sm:p-8">
                 <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
                     <div>
-                        <p className="duck-kicker text-[#f8c68d]">Order confidence</p>
+                        <p className="duck-kicker text-[#f8c68d]">{t('home.confidence.kicker')}</p>
                         <h2 className="duck-display mt-2 text-3xl sm:text-4xl">
-                            Clear contact, clear location, and a direct farm workflow
+                            {t('home.confidence.title')}
                         </h2>
                         <p className="mt-3 max-w-2xl text-sm leading-7 text-[#f1d2b2]">
-                            Buyers can submit online, call the farm, or open the map directly before pickup. That keeps the path from product page to confirmed order short.
+                            {t('home.confidence.desc')}
                         </p>
                     </div>
                     <Link
                         href={contactLocation.url()}
                         className="duck-btn-primary w-fit px-5 py-2.5 text-sm"
                     >
-                        Visit contact details
+                        {t('home.confidence.cta')}
                     </Link>
                 </div>
             </section>

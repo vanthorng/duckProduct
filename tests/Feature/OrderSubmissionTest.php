@@ -2,6 +2,8 @@
 
 use App\Mail\OrderReceivedMail;
 use App\Models\Order;
+use Illuminate\Http\Client\Request as HttpRequest;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
 use Inertia\Testing\AssertableInertia as Assert;
 
@@ -24,14 +26,15 @@ function validOrderPayload(array $overrides = []): array
 
 it('stores a valid order and sends a notification email', function () {
     Mail::fake();
+    Http::fake();
 
     $response = $this->post(route('orders.store'), validOrderPayload());
 
-    $response->assertRedirect(route('order-online'));
-    $response->assertSessionHas('orderSuccess');
-    $response->assertSessionHas('orderReference');
-
     $order = Order::query()->first();
+
+    $response->assertRedirect(route('order-online'));
+    $response->assertSessionHas('orderSuccessKey', 'order.successMessage');
+    $response->assertSessionHas('orderReference', $order?->reference());
 
     expect($order)->not->toBeNull();
     expect($order?->status)->toBe(Order::STATUS_PENDING);
@@ -40,6 +43,34 @@ it('stores a valid order and sends a notification email', function () {
     Mail::assertSent(OrderReceivedMail::class, function (OrderReceivedMail $mail) use ($order) {
         return $mail->hasTo(config('site.sales_email'))
             && $mail->order->is($order);
+    });
+
+    Http::assertNothingSent();
+});
+
+it('sends a telegram notification when telegram delivery is enabled', function () {
+    config([
+        'services.telegram.enabled' => true,
+        'services.telegram.bot_token' => 'telegram-token',
+        'services.telegram.chat_id' => 'farm-chat',
+    ]);
+
+    Mail::fake();
+    Http::fake([
+        'https://api.telegram.org/*' => Http::response(['ok' => true], 200),
+    ]);
+
+    $this->post(route('orders.store'), validOrderPayload([
+        'preferred_contact_method' => Order::CONTACT_METHOD_TELEGRAM,
+        'product' => Order::PRODUCT_HOUSE_ROASTED_DUCK,
+        'quantity' => '1 duck',
+    ]));
+
+    Http::assertSent(function (HttpRequest $request): bool {
+        return $request->url() === 'https://api.telegram.org/bottelegram-token/sendMessage'
+            && $request['chat_id'] === 'farm-chat'
+            && str_contains($request['text'], 'New duck order request')
+            && str_contains($request['text'], 'House Roasted Duck');
     });
 });
 

@@ -1,12 +1,10 @@
-import { Link, usePage } from '@inertiajs/react';
+import { Link } from '@inertiajs/react';
 
 import DuckSiteLayout from '@/components/duck-site-layout';
 import QuickContactActions from '@/components/quick-contact-actions';
 import { useI18n } from '@/i18n/context';
 import { ORDER_PRODUCTS } from '@/lib/order-options';
-import { cn } from '@/lib/utils';
 import { contactLocation, orderOnline } from '@/routes';
-import type { Site } from '@/types';
 
 const productsPhoto = '/images/products-real.jpg';
 const countrysidePhoto = '/images/location-real.jpg';
@@ -18,7 +16,6 @@ type ProductNote = {
 
 export default function DuckProducts() {
     const { t } = useI18n();
-    const { site } = usePage<{ site: Site }>().props;
 
     const whyChooseUs: string[] = [
         t('products.why.point1'),
@@ -62,13 +59,13 @@ export default function DuckProducts() {
                     <div className="grid gap-3">
                         <div className="duck-soft-card p-5">
                             <p className="text-xs font-semibold tracking-[0.14em] text-[#9f5f32] uppercase">
-                                Order support
+                                {t('products.support.kicker')}
                             </p>
                             <p className="mt-2 text-sm leading-6 text-[#6f4d34]">
-                                Retail, wholesale, and repeat buyers can use the product buttons below to jump straight into a prefilled order request.
+                                {t('products.support.desc')}
                             </p>
                             <p className="mt-3 text-sm font-semibold text-[#5c3418]">
-                                Service zone: {site.serviceZone}
+                                {t('common.serviceZoneLabel')}: {t('business.serviceZoneValue')}
                             </p>
                         </div>
                         <QuickContactActions compact />
@@ -130,18 +127,16 @@ export default function DuckProducts() {
                                 {t(product.priceKey)}
                             </p>
                             <div className="mt-4 rounded-2xl border border-[#ead6bf] bg-[#fff8f0] px-3 py-3 text-sm text-[#6a4126]">
-                                <span className="font-semibold">Minimum order unit:</span>{' '}
-                                {product.minimumUnitLabel}
+                                <span className="font-semibold">{t('common.minimumUnitLabel')}:</span>{' '}
+                                {t(product.minimumUnitKey)}
                             </div>
                             <Link
                                 href={orderOnline.url({
                                     query: { product: product.value },
                                 })}
-                                className={cn(
-                                    'duck-btn-primary mt-5 w-full px-5 py-3 text-center text-sm',
-                                )}
+                                className="duck-btn-primary mt-5 w-full px-5 py-3 text-center text-sm"
                             >
-                                Order this product
+                                {t('products.orderThisProduct')}
                             </Link>
                         </article>
                     );

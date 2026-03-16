@@ -94,20 +94,20 @@ export default function ContactLocation() {
 
     const serviceDetails: ServiceDetail[] = [
         {
-            title: 'Service zone',
-            value: site.serviceZone,
+            title: t('common.serviceZoneLabel'),
+            value: t('business.serviceZoneValue'),
         },
         {
-            title: 'Delivery days',
-            value: site.deliveryDays.join(' | '),
+            title: t('common.deliveryDaysLabel'),
+            value: t('business.deliveryDaysValue'),
         },
         {
-            title: 'Payment methods',
-            value: site.paymentMethods.join(' | '),
+            title: t('common.paymentMethodsLabel'),
+            value: t('business.paymentMethodsValue'),
         },
         {
-            title: 'Response hours',
-            value: site.responseHours,
+            title: t('common.responseHoursLabel'),
+            value: t('business.responseHoursValue'),
         },
     ];
 
@@ -291,9 +291,9 @@ export default function ContactLocation() {
                     </article>
 
                     <article className="duck-panel p-6 sm:p-7">
-                        <p className="duck-kicker">Business clarity</p>
+                        <p className="duck-kicker">{t('contact.businessClarity.kicker')}</p>
                         <h2 className="duck-display mt-2 text-3xl text-[#341d0b]">
-                            Details customers often confirm before ordering
+                            {t('contact.businessClarity.title')}
                         </h2>
                         <div className="mt-5 grid gap-3">
                             {serviceDetails.map((detail) => {

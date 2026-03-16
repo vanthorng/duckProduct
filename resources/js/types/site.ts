@@ -1,6 +1,7 @@
 export type Flash = {
-    orderSuccess?: string | null;
+    orderSuccessKey?: string | null;
     orderReference?: string | null;
+    dashboardSuccessKey?: string | null;
 };
 
 export type Site = {

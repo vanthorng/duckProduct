@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\OrderDashboardController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\OrderController;
 use App\Models\Order;
 use Illuminate\Http\Request;
@@ -22,3 +24,20 @@ Route::get('/order-online', function (Request $request) {
 })->name('order-online');
 Route::inertia('/contact-location', 'contact-location')->name('contact-location');
 Route::post('/orders', [OrderController::class, 'store'])->name('orders.store');
+
+Route::middleware('guest')->group(function (): void {
+    Route::get('/admin/login', [AuthenticatedSessionController::class, 'create'])
+        ->name('login');
+    Route::post('/admin/login', [AuthenticatedSessionController::class, 'store'])
+        ->name('admin.login.store');
+});
+
+Route::middleware('auth')->prefix('admin')->name('admin.')->group(function (): void {
+    Route::redirect('/', '/admin/orders');
+    Route::get('/orders', [OrderDashboardController::class, 'index'])
+        ->name('orders.index');
+    Route::patch('/orders/{order}', [OrderDashboardController::class, 'update'])
+        ->name('orders.update');
+    Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
+        ->name('logout');
+});
