@@ -1,7 +1,10 @@
-import { Link } from '@inertiajs/react';
+import { Link, usePage } from '@inertiajs/react';
 
 import DuckSiteLayout from '@/components/duck-site-layout';
+import QuickContactActions from '@/components/quick-contact-actions';
 import { useI18n } from '@/i18n/context';
+import { orderOnline } from '@/routes';
+import type { Site } from '@/types';
 
 type ContactCard = {
     title: string;
@@ -9,8 +12,6 @@ type ContactCard = {
     detail: string;
     href?: string;
 };
-
-const farmAddressUrl = 'https://maps.app.goo.gl/CW45YwZcPjAbgVh19';
 
 const locationPhotoOne = '/images/home-hero-real.jpg';
 const locationPhotoTwo = '/images/location-real.jpg';
@@ -25,26 +26,33 @@ type LocationFeature = {
     value: string;
 };
 
+type ServiceDetail = {
+    title: string;
+    value: string;
+};
+
 export default function ContactLocation() {
     const { t } = useI18n();
+    const { site } = usePage<{ site: Site }>().props;
 
     const contactCards: ContactCard[] = [
         {
             title: t('contact.card.phone.title'),
-            value: t('contact.card.phone.value'),
+            value: site.phoneDisplay,
             detail: t('contact.card.phone.desc'),
+            href: `tel:${site.primaryPhone.replace(/[^+\d]/g, '')}`,
         },
         {
             title: t('contact.card.email.title'),
-            value: t('contact.card.email.value'),
+            value: site.salesEmail,
             detail: t('contact.card.email.desc'),
-            href: 'mailto:vanthorngthai31@gmail.com',
+            href: `mailto:${site.salesEmail}`,
         },
         {
             title: t('contact.card.address.title'),
             value: t('contact.card.address.value'),
             detail: t('contact.card.address.desc'),
-            href: farmAddressUrl,
+            href: site.mapUrl,
         },
     ];
 
@@ -84,16 +92,43 @@ export default function ContactLocation() {
         t('contact.location.access.note3'),
     ];
 
+    const serviceDetails: ServiceDetail[] = [
+        {
+            title: 'Service zone',
+            value: site.serviceZone,
+        },
+        {
+            title: 'Delivery days',
+            value: site.deliveryDays.join(' | '),
+        },
+        {
+            title: 'Payment methods',
+            value: site.paymentMethods.join(' | '),
+        },
+        {
+            title: 'Response hours',
+            value: site.responseHours,
+        },
+    ];
+
     return (
-        <DuckSiteLayout title={t('nav.contact')}>
+        <DuckSiteLayout
+            title={t('nav.contact')}
+            description={t('contact.subtitle')}
+        >
             <section className="duck-panel duck-reveal p-7 sm:p-10">
-                <p className="duck-kicker">{t('contact.kicker')}</p>
-                <h1 className="duck-display mt-3 text-4xl text-[#2f1a09] sm:text-5xl">
-                    {t('contact.title')}
-                </h1>
-                <p className="mt-4 max-w-3xl text-base text-[#6d492f] sm:text-lg">
-                    {t('contact.subtitle')}
-                </p>
+                <div className="grid gap-6 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
+                    <div>
+                        <p className="duck-kicker">{t('contact.kicker')}</p>
+                        <h1 className="duck-display mt-3 text-4xl text-[#2f1a09] sm:text-5xl">
+                            {t('contact.title')}
+                        </h1>
+                        <p className="mt-4 max-w-3xl text-base text-[#6d492f] sm:text-lg">
+                            {t('contact.subtitle')}
+                        </p>
+                    </div>
+                    <QuickContactActions compact />
+                </div>
             </section>
 
             <section className="grid gap-4 md:grid-cols-3">
@@ -110,8 +145,8 @@ export default function ContactLocation() {
                             {card.href ? (
                                 <a
                                     href={card.href}
-                                    target="_blank"
-                                    rel="noreferrer"
+                                    target={card.href.startsWith('http') ? '_blank' : undefined}
+                                    rel={card.href.startsWith('http') ? 'noreferrer' : undefined}
                                     className="duck-display mt-3 block text-2xl text-[#3a220c] underline decoration-[#c18858] underline-offset-4"
                                 >
                                     {card.value}
@@ -137,12 +172,12 @@ export default function ContactLocation() {
                     <p className="mt-2 text-sm text-[#6d4a30]">
                         {t('contact.location.label')}{' '}
                         <a
-                            href={farmAddressUrl}
+                            href={site.mapUrl}
                             target="_blank"
                             rel="noreferrer"
                             className="font-semibold text-[#7b4219] underline underline-offset-4"
                         >
-                            https://maps.app.goo.gl/CW45YwZcPjAbgVh19
+                            {site.mapUrl}
                         </a>
                     </p>
 
@@ -212,7 +247,7 @@ export default function ContactLocation() {
                     </p>
 
                     <a
-                        href={farmAddressUrl}
+                        href={site.mapUrl}
                         target="_blank"
                         rel="noreferrer"
                         className="duck-btn-primary mt-5 inline-block px-5 py-2.5 text-sm"
@@ -221,40 +256,64 @@ export default function ContactLocation() {
                     </a>
                 </article>
 
-                <article className="duck-panel-dark p-6 text-[#faecda] sm:p-7">
-                    <h2 className="duck-display text-3xl">
-                        {t('contact.hours.title')}
-                    </h2>
-                    <ul className="mt-4 space-y-3">
-                        {workingHours.map((slot, index) => {
-                            return (
-                                <li
-                                    key={slot.day}
-                                    className="duck-reveal flex items-center justify-between rounded-2xl border border-[#664427] bg-[#3d1f0d] px-4 py-3 text-sm"
-                                    style={{
-                                        animationDelay: `${130 + index * 100}ms`,
-                                    }}
-                                >
-                                    <span>{slot.day}</span>
-                                    <span className="font-semibold text-[#f6c58c]">
-                                        {slot.hours}
-                                    </span>
-                                </li>
-                            );
-                        })}
-                    </ul>
+                <div className="grid gap-5">
+                    <article className="duck-panel-dark p-6 text-[#faecda] sm:p-7">
+                        <h2 className="duck-display text-3xl">
+                            {t('contact.hours.title')}
+                        </h2>
+                        <ul className="mt-4 space-y-3">
+                            {workingHours.map((slot, index) => {
+                                return (
+                                    <li
+                                        key={slot.day}
+                                        className="duck-reveal flex items-center justify-between rounded-2xl border border-[#664427] bg-[#3d1f0d] px-4 py-3 text-sm"
+                                        style={{ animationDelay: `${130 + index * 100}ms` }}
+                                    >
+                                        <span>{slot.day}</span>
+                                        <span className="font-semibold text-[#f6c58c]">
+                                            {slot.hours}
+                                        </span>
+                                    </li>
+                                );
+                            })}
+                        </ul>
 
-                    <p className="mt-5 text-sm text-[#f3d2b1]">
-                        {t('contact.hours.visitHint')}
-                    </p>
+                        <p className="mt-5 text-sm text-[#f3d2b1]">
+                            {t('contact.hours.visitHint')}
+                        </p>
 
-                    <Link
-                        href="/order-online"
-                        className="duck-btn-primary mt-6 inline-block px-5 py-2.5 text-sm"
-                    >
-                        {t('contact.hours.cta')}
-                    </Link>
-                </article>
+                        <Link
+                            href={orderOnline.url()}
+                            className="duck-btn-primary mt-6 inline-block px-5 py-2.5 text-sm"
+                        >
+                            {t('contact.hours.cta')}
+                        </Link>
+                    </article>
+
+                    <article className="duck-panel p-6 sm:p-7">
+                        <p className="duck-kicker">Business clarity</p>
+                        <h2 className="duck-display mt-2 text-3xl text-[#341d0b]">
+                            Details customers often confirm before ordering
+                        </h2>
+                        <div className="mt-5 grid gap-3">
+                            {serviceDetails.map((detail) => {
+                                return (
+                                    <article
+                                        key={detail.title}
+                                        className="rounded-2xl border border-[#dec8ac] bg-[#fffaf3] px-4 py-4"
+                                    >
+                                        <p className="text-xs font-semibold tracking-[0.14em] text-[#8b5c39] uppercase">
+                                            {detail.title}
+                                        </p>
+                                        <p className="mt-2 text-sm leading-6 text-[#6d492f]">
+                                            {detail.value}
+                                        </p>
+                                    </article>
+                                );
+                            })}
+                        </div>
+                    </article>
+                </div>
             </section>
         </DuckSiteLayout>
     );

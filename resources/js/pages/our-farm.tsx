@@ -2,6 +2,7 @@ import { Link } from '@inertiajs/react';
 
 import DuckSiteLayout from '@/components/duck-site-layout';
 import { useI18n } from '@/i18n/context';
+import { orderOnline } from '@/routes';
 
 type FarmPractice = {
     title: string;
@@ -98,7 +99,7 @@ export default function OurFarm() {
     ];
 
     return (
-        <DuckSiteLayout title={t('nav.ourFarm')}>
+        <DuckSiteLayout title={t('nav.ourFarm')} description={t('farm.subtitle')}>
             <section className="duck-panel duck-reveal p-7 sm:p-10">
                 <p className="duck-kicker">{t('farm.kicker')}</p>
                 <h1 className="duck-display mt-3 text-4xl text-[#2f1a09] sm:text-5xl">
@@ -172,9 +173,7 @@ export default function OurFarm() {
                                 <div
                                     key={fact.label}
                                     className="duck-soft-card duck-reveal p-5"
-                                    style={{
-                                        animationDelay: `${140 + index * 110}ms`,
-                                    }}
+                                    style={{ animationDelay: `${140 + index * 110}ms` }}
                                 >
                                     <p className="text-[0.72rem] font-semibold tracking-[0.16em] text-[#91592f] uppercase">
                                         {fact.label}
@@ -203,9 +202,7 @@ export default function OurFarm() {
                                 <figure
                                     key={item.caption}
                                     className="duck-soft-card duck-photo-card duck-reveal relative overflow-hidden p-3"
-                                    style={{
-                                        animationDelay: `${180 + index * 120}ms`,
-                                    }}
+                                    style={{ animationDelay: `${180 + index * 120}ms` }}
                                 >
                                     <img
                                         src={item.src}
@@ -233,7 +230,7 @@ export default function OurFarm() {
                         </h2>
                     </div>
                     <Link
-                        href="/order-online"
+                        href={orderOnline.url()}
                         className="duck-btn-primary w-fit px-4 py-2 text-sm"
                     >
                         {t('farm.routine.cta')}
@@ -246,9 +243,7 @@ export default function OurFarm() {
                             <article
                                 key={item.period}
                                 className="duck-reveal rounded-2xl border border-[#634123] bg-[#3a1d0b] p-4"
-                                style={{
-                                    animationDelay: `${140 + index * 120}ms`,
-                                }}
+                                style={{ animationDelay: `${140 + index * 120}ms` }}
                             >
                                 <p className="text-sm font-semibold text-[#f8c68d]">
                                     {item.period}

@@ -1,11 +1,15 @@
 import { Head, Link, usePage } from '@inertiajs/react';
 import type { PropsWithChildren } from 'react';
 
+import QuickContactActions from '@/components/quick-contact-actions';
 import { useI18n } from '@/i18n/context';
 import { cn } from '@/lib/utils';
+import { contactLocation, duckProducts, home, orderOnline, ourFarm } from '@/routes';
+import type { Site } from '@/types';
 
 type DuckSiteLayoutProps = PropsWithChildren<{
     title: string;
+    description?: string;
 }>;
 
 type NavigationItem = {
@@ -16,17 +20,31 @@ type NavigationItem = {
 export default function DuckSiteLayout({
     children,
     title,
+    description,
 }: DuckSiteLayoutProps) {
-    const { url } = usePage();
+    const { url, props } = usePage<{ site: Site }>();
     const { locale, setLocale, t } = useI18n();
+    const { site } = props;
 
     const navigationItems: NavigationItem[] = [
-        { href: '/', label: t('nav.home') },
-        { href: '/our-farm', label: t('nav.ourFarm') },
-        { href: '/duck-products', label: t('nav.products') },
-        { href: '/order-online', label: t('nav.order') },
-        { href: '/contact-location', label: t('nav.contact') },
+        { href: home.url(), label: t('nav.home') },
+        { href: ourFarm.url(), label: t('nav.ourFarm') },
+        { href: duckProducts.url(), label: t('nav.products') },
+        { href: orderOnline.url(), label: t('nav.order') },
+        { href: contactLocation.url(), label: t('nav.contact') },
     ];
+
+    const localBusinessSchema = {
+        '@context': 'https://schema.org',
+        '@type': 'LocalBusiness',
+        name: site.businessName,
+        url: site.appUrl,
+        telephone: site.primaryPhone,
+        email: site.salesEmail,
+        areaServed: site.serviceZone,
+        hasMap: site.mapUrl,
+        sameAs: [site.telegramUrl],
+    };
 
     return (
         <>
@@ -35,6 +53,21 @@ export default function DuckSiteLayout({
                 <link
                     href="https://fonts.bunny.net/css?family=ibm-plex-sans:400,500,600,700|noto-sans-khmer:400,500,600,700|playfair-display:500,600,700"
                     rel="stylesheet"
+                />
+                {description ? (
+                    <>
+                        <meta name="description" content={description} />
+                        <meta property="og:title" content={`${title} - ${site.businessName}`} />
+                        <meta property="og:description" content={description} />
+                    </>
+                ) : null}
+                <meta property="og:type" content="website" />
+                <meta name="robots" content="index,follow" />
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{
+                        __html: JSON.stringify(localBusinessSchema),
+                    }}
                 />
             </Head>
 
@@ -51,18 +84,16 @@ export default function DuckSiteLayout({
                 <div className="relative z-10 mx-auto flex min-h-screen w-full max-w-7xl flex-col px-4 py-6 sm:px-6 lg:px-10">
                     <div className="mb-4 flex flex-wrap items-center justify-between gap-2 rounded-2xl border border-[#d8c6ac] bg-white/75 px-4 py-2 text-xs text-[#6e4326] backdrop-blur-sm sm:text-sm">
                         <span>
-                            {t('layout.phoneLabel')}:{' '}
-                            <strong>+855 69 866 032, 095855474</strong>
+                            {t('layout.phoneLabel')}: <strong>{site.phoneDisplay}</strong>
                         </span>
                         <span>
-                            {t('layout.emailLabel')}:{' '}
-                            <strong>vanthorngthai31@gmail.com</strong>
+                            {t('layout.emailLabel')}: <strong>{site.salesEmail}</strong>
                         </span>
                     </div>
 
-                    <header className="mb-8 rounded-[2rem] border border-[#d6c5ab] bg-white/85 p-4 shadow-[0_18px_42px_rgba(78,39,12,0.12)] backdrop-blur-lg sm:p-6">
+                    <header className="mb-5 rounded-[2rem] border border-[#d6c5ab] bg-white/85 p-4 shadow-[0_18px_42px_rgba(78,39,12,0.12)] backdrop-blur-lg sm:p-6">
                         <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-                            <Link href="/" className="w-fit">
+                            <Link href={home.url()} className="w-fit">
                                 <p className="duck-display text-2xl text-[#3f200a] sm:text-3xl">
                                     {t('layout.brand')}
                                 </p>
@@ -129,6 +160,8 @@ export default function DuckSiteLayout({
                         </div>
                     </header>
 
+                    <QuickContactActions className="mb-8" />
+
                     <main className="flex-1 space-y-8">{children}</main>
 
                     <footer className="duck-panel-dark mt-12 p-6 text-[#f8ecde] sm:p-8">
@@ -149,19 +182,21 @@ export default function DuckSiteLayout({
 
                             <div className="flex flex-col items-start gap-3 lg:items-end">
                                 <Link
-                                    href="/order-online"
+                                    href={orderOnline.url()}
                                     className="duck-btn-primary px-5 py-2.5 text-sm text-[#fff]"
                                 >
                                     {t('layout.footerCtaOrder')}
                                 </Link>
                                 <Link
-                                    href="/contact-location"
+                                    href={contactLocation.url()}
                                     className="duck-btn-secondary px-5 py-2.5 text-sm text-[#f8dec2]"
                                 >
                                     {t('layout.footerCtaContact')}
                                 </Link>
                             </div>
                         </div>
+
+                        <QuickContactActions tone="dark" compact className="mt-6" />
                     </footer>
                 </div>
             </div>

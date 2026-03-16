@@ -38,8 +38,29 @@ class HandleInertiaRequests extends Middleware
         return [
             ...parent::share($request),
             'name' => config('app.name'),
+            'flash' => [
+                'orderSuccess' => $request->session()->get('orderSuccess'),
+                'orderReference' => $request->session()->get('orderReference'),
+            ],
             'auth' => [
                 'user' => $request->user(),
+            ],
+            'site' => [
+                'appUrl' => config('site.app_url'),
+                'businessName' => config('site.business_name'),
+                'primaryPhone' => config('site.primary_phone'),
+                'secondaryPhone' => config('site.secondary_phone'),
+                'phoneDisplay' => implode(', ', array_filter([
+                    config('site.primary_phone'),
+                    config('site.secondary_phone'),
+                ])),
+                'salesEmail' => config('site.sales_email'),
+                'telegramUrl' => config('site.telegram_url'),
+                'mapUrl' => config('site.map_url'),
+                'serviceZone' => config('site.service_zone'),
+                'responseHours' => config('site.response_hours'),
+                'paymentMethods' => config('site.payment_methods'),
+                'deliveryDays' => config('site.delivery_days'),
             ],
         ];
     }

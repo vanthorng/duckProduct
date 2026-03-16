@@ -1,15 +1,12 @@
-import { Link } from '@inertiajs/react';
+import { Link, usePage } from '@inertiajs/react';
 
 import DuckSiteLayout from '@/components/duck-site-layout';
+import QuickContactActions from '@/components/quick-contact-actions';
 import { useI18n } from '@/i18n/context';
-
-type Product = {
-    category: string;
-    name: string;
-    description: string;
-    packaging: string;
-    price: string;
-};
+import { ORDER_PRODUCTS } from '@/lib/order-options';
+import { cn } from '@/lib/utils';
+import { contactLocation, orderOnline } from '@/routes';
+import type { Site } from '@/types';
 
 const productsPhoto = '/images/products-real.jpg';
 const countrysidePhoto = '/images/location-real.jpg';
@@ -21,37 +18,7 @@ type ProductNote = {
 
 export default function DuckProducts() {
     const { t } = useI18n();
-
-    const products: Product[] = [
-        {
-            category: t('products.item.eggs.category'),
-            name: t('products.item.eggs.name'),
-            description: t('products.item.eggs.desc'),
-            packaging: t('products.item.eggs.packaging'),
-            price: t('products.item.eggs.price'),
-        },
-        {
-            category: t('products.item.meat.category'),
-            name: t('products.item.meat.name'),
-            description: t('products.item.meat.desc'),
-            packaging: t('products.item.meat.packaging'),
-            price: t('products.item.meat.price'),
-        },
-        {
-            category: t('products.item.roasted.category'),
-            name: t('products.item.roasted.name'),
-            description: t('products.item.roasted.desc'),
-            packaging: t('products.item.roasted.packaging'),
-            price: t('products.item.roasted.price'),
-        },
-        {
-            category: t('products.item.herb.category'),
-            name: t('products.item.herb.name'),
-            description: t('products.item.herb.desc'),
-            packaging: t('products.item.herb.packaging'),
-            price: t('products.item.herb.price'),
-        },
-    ];
+    const { site } = usePage<{ site: Site }>().props;
 
     const whyChooseUs: string[] = [
         t('products.why.point1'),
@@ -76,15 +43,37 @@ export default function DuckProducts() {
     ];
 
     return (
-        <DuckSiteLayout title={t('nav.products')}>
+        <DuckSiteLayout
+            title={t('nav.products')}
+            description={t('products.subtitle')}
+        >
             <section className="duck-panel duck-reveal p-7 sm:p-10">
-                <p className="duck-kicker">{t('products.kicker')}</p>
-                <h1 className="duck-display mt-3 text-4xl text-[#2f1a09] sm:text-5xl">
-                    {t('products.title')}
-                </h1>
-                <p className="mt-4 max-w-3xl text-base text-[#6d492f] sm:text-lg">
-                    {t('products.subtitle')}
-                </p>
+                <div className="grid gap-6 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
+                    <div>
+                        <p className="duck-kicker">{t('products.kicker')}</p>
+                        <h1 className="duck-display mt-3 text-4xl text-[#2f1a09] sm:text-5xl">
+                            {t('products.title')}
+                        </h1>
+                        <p className="mt-4 max-w-3xl text-base text-[#6d492f] sm:text-lg">
+                            {t('products.subtitle')}
+                        </p>
+                    </div>
+
+                    <div className="grid gap-3">
+                        <div className="duck-soft-card p-5">
+                            <p className="text-xs font-semibold tracking-[0.14em] text-[#9f5f32] uppercase">
+                                Order support
+                            </p>
+                            <p className="mt-2 text-sm leading-6 text-[#6f4d34]">
+                                Retail, wholesale, and repeat buyers can use the product buttons below to jump straight into a prefilled order request.
+                            </p>
+                            <p className="mt-3 text-sm font-semibold text-[#5c3418]">
+                                Service zone: {site.serviceZone}
+                            </p>
+                        </div>
+                        <QuickContactActions compact />
+                    </div>
+                </div>
             </section>
 
             <section className="grid gap-4 lg:grid-cols-[1.1fr_0.9fr]">
@@ -118,28 +107,42 @@ export default function DuckProducts() {
             </section>
 
             <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-                {products.map((product, index) => {
+                {ORDER_PRODUCTS.map((product, index) => {
                     return (
                         <article
-                            key={product.name}
-                            className="duck-soft-card duck-reveal p-6"
+                            key={product.value}
+                            className="duck-soft-card duck-reveal flex flex-col p-6"
                             style={{ animationDelay: `${140 + index * 130}ms` }}
                         >
                             <p className="text-xs font-semibold tracking-[0.14em] text-[#9f5f32] uppercase">
-                                {product.category}
+                                {t(product.categoryKey)}
                             </p>
                             <h2 className="duck-display mt-2 text-2xl text-[#3a220d]">
-                                {product.name}
+                                {t(product.labelKey)}
                             </h2>
                             <p className="mt-3 text-sm leading-6 text-[#6f4d34]">
-                                {product.description}
+                                {t(product.descriptionKey)}
                             </p>
                             <p className="mt-4 text-sm font-medium text-[#8e562e]">
-                                {product.packaging}
+                                {t(product.packagingKey)}
                             </p>
                             <p className="mt-2 text-sm font-semibold text-[#5c3418]">
-                                {product.price}
+                                {t(product.priceKey)}
                             </p>
+                            <div className="mt-4 rounded-2xl border border-[#ead6bf] bg-[#fff8f0] px-3 py-3 text-sm text-[#6a4126]">
+                                <span className="font-semibold">Minimum order unit:</span>{' '}
+                                {product.minimumUnitLabel}
+                            </div>
+                            <Link
+                                href={orderOnline.url({
+                                    query: { product: product.value },
+                                })}
+                                className={cn(
+                                    'duck-btn-primary mt-5 w-full px-5 py-3 text-center text-sm',
+                                )}
+                            >
+                                Order this product
+                            </Link>
                         </article>
                     );
                 })}
@@ -158,9 +161,7 @@ export default function DuckProducts() {
                                 <article
                                     key={note.title}
                                     className="duck-soft-card duck-reveal p-5"
-                                    style={{
-                                        animationDelay: `${150 + index * 110}ms`,
-                                    }}
+                                    style={{ animationDelay: `${150 + index * 110}ms` }}
                                 >
                                     <h3 className="duck-display text-2xl text-[#3a220d]">
                                         {note.title}
@@ -213,7 +214,7 @@ export default function DuckProducts() {
                         </h2>
                     </div>
                     <Link
-                        href="/contact-location"
+                        href={contactLocation.url()}
                         className="duck-btn-primary w-fit px-4 py-2 text-sm"
                     >
                         {t('products.why.cta')}
@@ -226,9 +227,7 @@ export default function DuckProducts() {
                             <li
                                 key={point}
                                 className="duck-reveal rounded-2xl border border-[#654426] bg-[#3b1f0d] px-4 py-3 text-sm"
-                                style={{
-                                    animationDelay: `${120 + index * 110}ms`,
-                                }}
+                                style={{ animationDelay: `${120 + index * 110}ms` }}
                             >
                                 {point}
                             </li>

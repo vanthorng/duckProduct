@@ -1,7 +1,10 @@
-import { Link } from '@inertiajs/react';
+import { Link, usePage } from '@inertiajs/react';
 
 import DuckSiteLayout from '@/components/duck-site-layout';
+import QuickContactActions from '@/components/quick-contact-actions';
 import { useI18n } from '@/i18n/context';
+import { contactLocation, duckProducts, orderOnline } from '@/routes';
+import type { Site } from '@/types';
 
 type Highlight = {
     label: string;
@@ -32,6 +35,7 @@ type GalleryItem = {
 
 export default function Home() {
     const { t } = useI18n();
+    const { site } = usePage<{ site: Site }>().props;
 
     const highlights: Highlight[] = [
         {
@@ -104,8 +108,23 @@ export default function Home() {
         },
     ];
 
+    const trustCards: InfoCard[] = [
+        {
+            title: 'Direct farm response',
+            description: `Use the online order form or direct contact during ${site.responseHours} for fast confirmation.`,
+        },
+        {
+            title: 'Clear delivery zone',
+            description: `Orders are handled for ${site.serviceZone} with pickup still available for confirmed orders.`,
+        },
+        {
+            title: 'Built for repeat buyers',
+            description: 'Households, food stalls, restaurants, resellers, and growers can all order through one consistent process.',
+        },
+    ];
+
     return (
-        <DuckSiteLayout title={t('nav.home')}>
+        <DuckSiteLayout title={t('nav.home')} description={t('home.subtitle')}>
             <section className="duck-panel duck-reveal relative overflow-hidden p-7 sm:p-10">
                 <div className="duck-ambient top-[-90px] right-[-60px] h-56 w-56 bg-[#f3a13b]/40" />
                 <div
@@ -124,18 +143,20 @@ export default function Home() {
 
                         <div className="mt-7 flex flex-wrap gap-3">
                             <Link
-                                href="/order-online"
+                                href={orderOnline.url()}
                                 className="duck-btn-primary px-6 py-3 text-sm"
                             >
                                 {t('home.ctaOrder')}
                             </Link>
                             <Link
-                                href="/duck-products"
+                                href={duckProducts.url()}
                                 className="duck-btn-secondary px-6 py-3 text-sm"
                             >
                                 {t('home.ctaProducts')}
                             </Link>
                         </div>
+
+                        <QuickContactActions className="mt-5" compact />
                     </div>
 
                     <figure className="duck-soft-card duck-photo-card duck-reveal relative overflow-hidden p-3">
@@ -184,6 +205,25 @@ export default function Home() {
                             </p>
                             <p className="mt-2 text-sm text-[#6e4b33]">
                                 {highlight.description}
+                            </p>
+                        </article>
+                    );
+                })}
+            </section>
+
+            <section className="grid gap-4 md:grid-cols-3">
+                {trustCards.map((card, index) => {
+                    return (
+                        <article
+                            key={card.title}
+                            className="duck-soft-card duck-reveal p-5"
+                            style={{ animationDelay: `${120 + index * 110}ms` }}
+                        >
+                            <h2 className="duck-display text-2xl text-[#321b09]">
+                                {card.title}
+                            </h2>
+                            <p className="mt-3 text-sm leading-6 text-[#6e4b33]">
+                                {card.description}
                             </p>
                         </article>
                     );
@@ -239,9 +279,7 @@ export default function Home() {
                             <figure
                                 key={item.caption}
                                 className="duck-soft-card duck-photo-card duck-reveal relative overflow-hidden p-3"
-                                style={{
-                                    animationDelay: `${180 + index * 120}ms`,
-                                }}
+                                style={{ animationDelay: `${180 + index * 120}ms` }}
                             >
                                 <img
                                     src={item.src}
@@ -260,15 +298,13 @@ export default function Home() {
             <section className="duck-panel p-7 sm:p-8">
                 <div className="mb-6 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
                     <div>
-                        <p className="duck-kicker">
-                            {t('home.products.kicker')}
-                        </p>
+                        <p className="duck-kicker">{t('home.products.kicker')}</p>
                         <h2 className="duck-display mt-2 text-3xl text-[#2f1a09] sm:text-4xl">
                             {t('home.products.title')}
                         </h2>
                     </div>
                     <Link
-                        href="/duck-products"
+                        href={duckProducts.url()}
                         className="duck-btn-secondary w-fit px-4 py-2 text-sm"
                     >
                         {t('home.products.viewAll')}
@@ -281,9 +317,7 @@ export default function Home() {
                             <article
                                 key={product.name}
                                 className="duck-soft-card duck-reveal p-5"
-                                style={{
-                                    animationDelay: `${180 + index * 120}ms`,
-                                }}
+                                style={{ animationDelay: `${180 + index * 120}ms` }}
                             >
                                 <h3 className="duck-display text-2xl text-[#3a210c]">
                                     {product.name}
@@ -297,6 +331,26 @@ export default function Home() {
                             </article>
                         );
                     })}
+                </div>
+            </section>
+
+            <section className="duck-panel-dark p-7 text-[#f8ead7] sm:p-8">
+                <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+                    <div>
+                        <p className="duck-kicker text-[#f8c68d]">Order confidence</p>
+                        <h2 className="duck-display mt-2 text-3xl sm:text-4xl">
+                            Clear contact, clear location, and a direct farm workflow
+                        </h2>
+                        <p className="mt-3 max-w-2xl text-sm leading-7 text-[#f1d2b2]">
+                            Buyers can submit online, call the farm, or open the map directly before pickup. That keeps the path from product page to confirmed order short.
+                        </p>
+                    </div>
+                    <Link
+                        href={contactLocation.url()}
+                        className="duck-btn-primary w-fit px-5 py-2.5 text-sm"
+                    >
+                        Visit contact details
+                    </Link>
                 </div>
             </section>
         </DuckSiteLayout>
