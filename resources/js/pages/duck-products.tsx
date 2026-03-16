@@ -12,6 +12,12 @@ type Product = {
 };
 
 const productsPhoto = '/images/products-real.jpg';
+const countrysidePhoto = '/images/location-real.jpg';
+
+type ProductNote = {
+    title: string;
+    description: string;
+};
 
 export default function DuckProducts() {
     const { t } = useI18n();
@@ -52,6 +58,21 @@ export default function DuckProducts() {
         t('products.why.point2'),
         t('products.why.point3'),
         t('products.why.point4'),
+    ];
+
+    const productNotes: ProductNote[] = [
+        {
+            title: t('products.notes.point1.title'),
+            description: t('products.notes.point1.desc'),
+        },
+        {
+            title: t('products.notes.point2.title'),
+            description: t('products.notes.point2.desc'),
+        },
+        {
+            title: t('products.notes.point3.title'),
+            description: t('products.notes.point3.desc'),
+        },
     ];
 
     return (
@@ -122,6 +143,63 @@ export default function DuckProducts() {
                         </article>
                     );
                 })}
+            </section>
+
+            <section className="grid gap-5 lg:grid-cols-[1.05fr_0.95fr]">
+                <article className="duck-panel p-7 sm:p-8">
+                    <p className="duck-kicker">{t('products.notes.kicker')}</p>
+                    <h2 className="duck-display mt-2 text-3xl text-[#341d0b] sm:text-4xl">
+                        {t('products.notes.title')}
+                    </h2>
+
+                    <div className="mt-6 grid gap-4">
+                        {productNotes.map((note, index) => {
+                            return (
+                                <article
+                                    key={note.title}
+                                    className="duck-soft-card duck-reveal p-5"
+                                    style={{
+                                        animationDelay: `${150 + index * 110}ms`,
+                                    }}
+                                >
+                                    <h3 className="duck-display text-2xl text-[#3a220d]">
+                                        {note.title}
+                                    </h3>
+                                    <p className="mt-2 text-sm leading-6 text-[#6f4d34]">
+                                        {note.description}
+                                    </p>
+                                </article>
+                            );
+                        })}
+                    </div>
+                </article>
+
+                <div className="grid gap-4">
+                    <figure className="duck-soft-card duck-photo-card duck-reveal relative overflow-hidden p-3">
+                        <img
+                            src={productsPhoto}
+                            alt={t('products.imageAlt')}
+                            className="duck-kenburns h-[240px] w-full rounded-3xl object-cover"
+                        />
+                        <figcaption className="duck-glass-chip absolute right-4 bottom-4 left-4 rounded-2xl px-4 py-3 text-sm text-[#fff2e3]">
+                            {t('products.notes.caption1')}
+                        </figcaption>
+                    </figure>
+
+                    <figure
+                        className="duck-soft-card duck-photo-card duck-reveal relative overflow-hidden p-3"
+                        style={{ animationDelay: '220ms' }}
+                    >
+                        <img
+                            src={countrysidePhoto}
+                            alt={t('products.notes.caption2')}
+                            className="duck-kenburns h-[240px] w-full rounded-3xl object-cover"
+                        />
+                        <figcaption className="duck-glass-chip absolute right-4 bottom-4 left-4 rounded-2xl px-4 py-3 text-sm text-[#fff2e3]">
+                            {t('products.notes.caption2')}
+                        </figcaption>
+                    </figure>
+                </div>
             </section>
 
             <section className="duck-panel-dark p-7 text-[#f8ead8] sm:p-8">

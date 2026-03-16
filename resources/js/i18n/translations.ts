@@ -65,6 +65,23 @@ export const translations: Record<Locale, Record<string, string>> = {
         'home.products.herb.desc':
             'Nutrient-rich fertilizer blend for herbs, vegetables, and farm soil care.',
         'home.products.herb.price': 'From $6.00 / sack',
+        'home.story.kicker': 'Real farm moments',
+        'home.story.title': 'See the business behind the products',
+        'home.story.desc':
+            'From countryside grazing zones to prepared roasted duck, the business serves household buyers, restaurants, resellers, and growers through one direct workflow.',
+        'home.story.card1.title': 'Fresh from farm',
+        'home.story.card1.desc':
+            'Morning collection, sorting, and packing reduce waiting time and protect product quality.',
+        'home.story.card2.title': 'Prepared for business',
+        'home.story.card2.desc':
+            'Restaurant, resale, and bulk buyers receive practical packaging and direct support for repeat orders.',
+        'home.story.card3.title': 'Organic reuse',
+        'home.story.card3.desc':
+            'Duck droppings herb sacks turn farm byproducts into useful fertilizer for crops, herbs, and gardens.',
+        'home.story.caption1': 'Farm landscape and grazing environment',
+        'home.story.caption2': 'Duck farm activity and field management',
+        'home.story.caption3':
+            'Prepared roasted duck for retail and food service',
 
         'farm.kicker': 'Our farm',
         'farm.title': 'Built for quality, consistency, and responsible growth.',
@@ -98,6 +115,26 @@ export const translations: Record<Locale, Record<string, string>> = {
         'farm.routine.step3.task': 'Product prep for online orders',
         'farm.routine.step4.time': '03:00 PM',
         'farm.routine.step4.task': 'Roasting, packing, and dispatch',
+        'farm.facts.kicker': 'Farm facts',
+        'farm.facts.title': 'Operational details buyers usually ask for',
+        'farm.facts.item1.label': 'Collection cycle',
+        'farm.facts.item1.value':
+            'Daily morning collection and same-day sorting for eggs and fresh stock.',
+        'farm.facts.item2.label': 'Packaging',
+        'farm.facts.item2.value':
+            'Tray, vacuum pack, whole roast, and 25kg or 50kg sack options.',
+        'farm.facts.item3.label': 'Customer types',
+        'farm.facts.item3.value':
+            'Households, food stalls, restaurants, resellers, and growers.',
+        'farm.facts.item4.label': 'Response time',
+        'farm.facts.item4.value':
+            'Phone and Telegram support during working hours for quick confirmation.',
+        'farm.gallery.kicker': 'Real working environment',
+        'farm.gallery.title': 'More of the farm surroundings',
+        'farm.gallery.desc':
+            'These images show the kind of environment behind the business: open space, practical farm access, and direct supply readiness.',
+        'farm.gallery.caption1': 'Open duck field environment',
+        'farm.gallery.caption2': 'Countryside access near the farm',
 
         'products.kicker': 'Duck products',
         'products.title':
@@ -143,6 +180,20 @@ export const translations: Record<Locale, Record<string, string>> = {
         'products.why.point3': 'Simple wholesale pricing for larger volumes.',
         'products.why.point4':
             'Direct support via phone, email, and online form.',
+        'products.notes.kicker': 'Ordering details',
+        'products.notes.title': 'More information before you order',
+        'products.notes.point1.title': 'Retail and wholesale',
+        'products.notes.point1.desc':
+            'Small household orders and larger business orders are both supported with clear pricing and practical packaging.',
+        'products.notes.point2.title': 'Pickup and delivery',
+        'products.notes.point2.desc':
+            'Customers can collect from the farm or arrange local delivery for selected districts and business schedules.',
+        'products.notes.point3.title': 'Product handling',
+        'products.notes.point3.desc':
+            'Eggs are graded, meat is packed carefully, roasted duck is ready to serve, and herb sacks are prepared for transport.',
+        'products.notes.caption1': 'Roasted duck prepared for sale',
+        'products.notes.caption2':
+            'Countryside source environment behind the product line',
 
         'order.kicker': 'Order online',
         'order.title': 'Place your duck product order in minutes.',
@@ -294,6 +345,22 @@ export const translations: Record<Locale, Record<string, string>> = {
         'home.products.herb.desc':
             'ជីសរីរាង្គសំបូរសារធាតុចិញ្ចឹម សម្រាប់បន្លែ ឱសថស្មៅ និងថែរក្សាដីកសិកម្ម។',
         'home.products.herb.price': 'ចាប់ពី $6.00 / បាវ',
+        'home.story.kicker': 'រូបភាពពិតពីកសិដ្ឋាន',
+        'home.story.title': 'មើលអាជីវកម្មនៅពីក្រោយផលិតផល',
+        'home.story.desc':
+            'ចាប់ពីតំបន់ជនបទ និងការចិញ្ចឹម រហូតដល់ទាអាំងដែលរៀបចំរួច អាជីវកម្មនេះផ្គត់ផ្គង់ដល់គ្រួសារ ភោជនីយដ្ឋាន អ្នកលក់បន្ត និងអ្នកដាំដុះ តាមដំណើរការផ្ទាល់តែមួយ។',
+        'home.story.card1.title': 'ស្រស់ចេញពីកសិដ្ឋាន',
+        'home.story.card1.desc':
+            'ការប្រមូល ចាត់ថ្នាក់ និងវេចខ្ចប់នៅពេលព្រឹក ជួយកាត់បន្ថយពេលរង់ចាំ និងការពារគុណភាពផលិតផល។',
+        'home.story.card2.title': 'រៀបចំសម្រាប់អាជីវកម្ម',
+        'home.story.card2.desc':
+            'អតិថិជនភោជនីយដ្ឋាន ការលក់បន្ត និងការលក់បរិមាណធំ ទទួលបានការវេចខ្ចប់សមស្រប និងការគាំទ្រផ្ទាល់សម្រាប់ការបញ្ជាទិញជាបន្តបន្ទាប់។',
+        'home.story.card3.title': 'ប្រើប្រាស់សរីរាង្គឡើងវិញ',
+        'home.story.card3.desc':
+            'ជី Duck Droppings Herb ជាបាវ បម្លែងផលប៉ះពាល់ពីកសិដ្ឋានទៅជាជីមានប្រយោជន៍សម្រាប់ដំណាំ ឱសថស្មៅ និងសួនច្បារ។',
+        'home.story.caption1': 'ទេសភាពកសិដ្ឋាន និងបរិយាកាសចិញ្ចឹម',
+        'home.story.caption2': 'សកម្មភាពកសិដ្ឋានទា និងការគ្រប់គ្រងវាល',
+        'home.story.caption3': 'ទាអាំងដែលរៀបចំសម្រាប់លក់រាយ និងសេវាអាហារ',
 
         'farm.kicker': 'កសិដ្ឋានរបស់យើង',
         'farm.title':
@@ -328,6 +395,26 @@ export const translations: Record<Locale, Record<string, string>> = {
         'farm.routine.step3.task': 'រៀបចំផលិតផលសម្រាប់ការបញ្ជាទិញអនឡាញ',
         'farm.routine.step4.time': '03:00 រសៀល',
         'farm.routine.step4.task': 'អាំង វេចខ្ចប់ និងចែកចាយ',
+        'farm.facts.kicker': 'ព័ត៌មានកសិដ្ឋាន',
+        'farm.facts.title': 'ព័ត៌មានប្រតិបត្តិការដែលអតិថិជនតែងសួរ',
+        'farm.facts.item1.label': 'វដ្តប្រមូលផល',
+        'farm.facts.item1.value':
+            'ប្រមូលនៅពេលព្រឹករៀងរាល់ថ្ងៃ និងចាត់ថ្នាក់ក្នុងថ្ងៃតែមួយ សម្រាប់ស៊ុត និងស្តុកស្រស់។',
+        'farm.facts.item2.label': 'ការវេចខ្ចប់',
+        'farm.facts.item2.value':
+            'មានជាថាស កញ្ចប់បិតខ្យល់ ទាអាំងមូល និងជាបាវ 25kg ឬ 50kg។',
+        'farm.facts.item3.label': 'ប្រភេទអតិថិជន',
+        'farm.facts.item3.value':
+            'គ្រួសារ តូបអាហារ ភោជនីយដ្ឋាន អ្នកលក់បន្ត និងអ្នកដាំដុះ។',
+        'farm.facts.item4.label': 'ពេលឆ្លើយតប',
+        'farm.facts.item4.value':
+            'គាំទ្រតាមទូរស័ព្ទ និងតេឡេក្រាម ក្នុងម៉ោងធ្វើការ សម្រាប់ការបញ្ជាក់រហ័ស។',
+        'farm.gallery.kicker': 'បរិយាកាសការងារពិត',
+        'farm.gallery.title': 'មើលបរិយាកាសជុំវិញកសិដ្ឋានបន្ថែម',
+        'farm.gallery.desc':
+            'រូបភាពទាំងនេះបង្ហាញពីបរិយាកាសនៅពីក្រោយអាជីវកម្ម៖ ទីធ្លាបើកចំហ ផ្លូវចូលអនុវត្តបាន និងការត្រៀមផ្គត់ផ្គង់ដោយផ្ទាល់។',
+        'farm.gallery.caption1': 'បរិយាកាសវាលចិញ្ចឹមទាបើកចំហ',
+        'farm.gallery.caption2': 'ផ្លូវជនបទក្បែរកសិដ្ឋាន',
 
         'products.kicker': 'ផលិតផលទា',
         'products.title':
@@ -371,6 +458,19 @@ export const translations: Record<Locale, Record<string, string>> = {
         'products.why.point2': 'មានស្តុកស្ថិរភាពសម្រាប់អតិថិជនប្រចាំ។',
         'products.why.point3': 'តម្លៃលក់ដុំច្បាស់លាស់សម្រាប់បរិមាណធំ។',
         'products.why.point4': 'គាំទ្រផ្ទាល់តាមទូរស័ព្ទ អ៊ីមែល និងទម្រង់អនឡាញ។',
+        'products.notes.kicker': 'ព័ត៌មានបញ្ជាទិញ',
+        'products.notes.title': 'ព័ត៌មានបន្ថែមមុនពេលអ្នកបញ្ជាទិញ',
+        'products.notes.point1.title': 'លក់រាយ និងលក់ដុំ',
+        'products.notes.point1.desc':
+            'គាំទ្រទាំងការបញ្ជាទិញតូចសម្រាប់គ្រួសារ និងការបញ្ជាទិញធំសម្រាប់អាជីវកម្ម ដោយមានតម្លៃច្បាស់ និងការវេចខ្ចប់សមស្រប។',
+        'products.notes.point2.title': 'យកដោយផ្ទាល់ និងដឹកជញ្ជូន',
+        'products.notes.point2.desc':
+            'អតិថិជនអាចមកយកពីកសិដ្ឋាន ឬរៀបចំដឹកជញ្ជូនក្នុងស្រុកសម្រាប់តំបន់ និងកាលវិភាគអាជីវកម្មដែលបានកំណត់។',
+        'products.notes.point3.title': 'ការគ្រប់គ្រងផលិតផល',
+        'products.notes.point3.desc':
+            'ស៊ុតត្រូវបានចាត់ថ្នាក់ សាច់ត្រូវបានវេចខ្ចប់យ៉ាងប្រុងប្រយ័ត្ន ទាអាំងរួចរាល់សម្រាប់បម្រើ ហើយជីជាបាវត្រូវបានរៀបចំសម្រាប់ដឹកជញ្ជូន។',
+        'products.notes.caption1': 'ទាអាំងដែលរៀបចំសម្រាប់លក់',
+        'products.notes.caption2': 'បរិយាកាសជនបទនៅពីក្រោយខ្សែផលិតផល',
 
         'order.kicker': 'បញ្ជាទិញអនឡាញ',
         'order.title': 'បញ្ជាទិញផលិតផលទារបស់អ្នកក្នុងរយៈពេលប៉ុន្មាននាទី។',
