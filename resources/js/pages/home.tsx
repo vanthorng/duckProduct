@@ -15,6 +15,8 @@ type FeaturedProduct = {
     price: string;
 };
 
+const homeHeroPhoto = '/images/home-hero-real.jpg';
+
 export default function Home() {
     const { t } = useI18n();
 
@@ -62,6 +64,11 @@ export default function Home() {
     return (
         <DuckSiteLayout title={t('nav.home')}>
             <section className="duck-panel duck-reveal relative overflow-hidden p-7 sm:p-10">
+                <div className="duck-ambient top-[-90px] right-[-60px] h-56 w-56 bg-[#f3a13b]/40" />
+                <div
+                    className="duck-ambient bottom-[-80px] left-[-50px] h-52 w-52 bg-[#8f562f]/25"
+                    style={{ animationDelay: '1.4s' }}
+                />
                 <div className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
                     <div>
                         <p className="duck-kicker">{t('home.kicker')}</p>
@@ -88,12 +95,32 @@ export default function Home() {
                         </div>
                     </div>
 
-                    <figure className="duck-soft-card overflow-hidden p-3">
+                    <figure className="duck-soft-card duck-photo-card duck-reveal relative overflow-hidden p-3">
                         <img
-                            src="/images/cambodia-duck-farm.svg"
+                            src={homeHeroPhoto}
                             alt={t('home.imageAlt')}
-                            className="h-full w-full rounded-2xl object-cover"
+                            className="duck-kenburns h-[320px] w-full rounded-2xl object-cover sm:h-[420px]"
                         />
+                        <div className="duck-glass-chip duck-fade-up absolute right-5 bottom-5 left-5 rounded-2xl px-4 py-4 text-[#fff2e3]">
+                            <div className="grid gap-3 sm:grid-cols-2">
+                                <div>
+                                    <p className="text-[0.68rem] font-semibold tracking-[0.16em] text-[#ffd8aa] uppercase">
+                                        {t('home.highlights.area.label')}
+                                    </p>
+                                    <p className="mt-1 text-lg font-semibold">
+                                        {t('home.highlights.area.value')}
+                                    </p>
+                                </div>
+                                <div>
+                                    <p className="text-[0.68rem] font-semibold tracking-[0.16em] text-[#ffd8aa] uppercase">
+                                        {t('home.highlights.delivery.label')}
+                                    </p>
+                                    <p className="mt-1 text-lg font-semibold">
+                                        {t('home.highlights.delivery.value')}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
                     </figure>
                 </div>
             </section>

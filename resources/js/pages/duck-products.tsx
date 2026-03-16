@@ -11,6 +11,8 @@ type Product = {
     price: string;
 };
 
+const productsPhoto = '/images/products-real.jpg';
+
 export default function DuckProducts() {
     const { t } = useI18n();
 
@@ -74,12 +76,23 @@ export default function DuckProducts() {
                         {t('products.new.desc')}
                     </p>
                 </article>
-                <figure className="duck-soft-card duck-reveal overflow-hidden p-3">
+                <figure className="duck-soft-card duck-photo-card duck-reveal relative overflow-hidden p-3">
                     <img
-                        src="/images/cambodia-market-sacks.svg"
+                        src={productsPhoto}
                         alt={t('products.imageAlt')}
-                        className="h-full w-full rounded-3xl object-cover"
+                        className="duck-kenburns h-[320px] w-full rounded-3xl object-cover sm:h-[400px]"
                     />
+                    <div className="duck-glass-chip duck-fade-up absolute right-5 bottom-5 left-5 rounded-2xl px-4 py-4 text-[#fff2e3]">
+                        <p className="text-[0.68rem] font-semibold tracking-[0.16em] text-[#ffd8aa] uppercase">
+                            {t('products.item.roasted.category')}
+                        </p>
+                        <p className="mt-2 text-lg font-semibold sm:text-xl">
+                            {t('products.item.roasted.name')}
+                        </p>
+                        <p className="mt-2 text-sm text-[#f6dcc2]">
+                            {t('products.item.roasted.price')}
+                        </p>
+                    </div>
                 </figure>
             </section>
 

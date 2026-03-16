@@ -13,6 +13,8 @@ type TimelineItem = {
     task: string;
 };
 
+const farmPhoto = '/images/our-farm-real.jpg';
+
 export default function OurFarm() {
     const { t } = useI18n();
 
@@ -67,12 +69,23 @@ export default function OurFarm() {
             </section>
 
             <section className="grid gap-4 lg:grid-cols-[0.95fr_1.05fr]">
-                <figure className="duck-soft-card duck-reveal overflow-hidden p-3">
+                <figure className="duck-soft-card duck-photo-card duck-reveal relative overflow-hidden p-3">
                     <img
-                        src="/images/cambodia-market-sacks.svg"
+                        src={farmPhoto}
                         alt={t('farm.imageAlt')}
-                        className="h-full w-full rounded-3xl object-cover"
+                        className="duck-kenburns h-[320px] w-full rounded-3xl object-cover sm:h-[420px]"
                     />
+                    <div className="duck-glass-chip duck-fade-up absolute right-5 bottom-5 left-5 rounded-2xl px-4 py-4 text-[#fff2e3]">
+                        <p className="text-[0.68rem] font-semibold tracking-[0.16em] text-[#ffd8aa] uppercase">
+                            {t('farm.sceneKicker')}
+                        </p>
+                        <p className="mt-2 text-lg font-semibold sm:text-xl">
+                            {t('farm.practice.ponds.title')}
+                        </p>
+                        <p className="mt-2 text-sm text-[#f6dcc2]">
+                            {t('farm.practice.ponds.desc')}
+                        </p>
+                    </div>
                 </figure>
 
                 <article className="duck-panel duck-reveal p-6 sm:p-7">

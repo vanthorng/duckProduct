@@ -12,10 +12,8 @@ type ContactCard = {
 
 const farmAddressUrl = 'https://maps.app.goo.gl/CW45YwZcPjAbgVh19';
 
-const locationPhotoOne =
-    'https://commons.wikimedia.org/wiki/Special:FilePath/Cambodia%20Rice%20Fields%20%289728041389%29.jpg';
-const locationPhotoTwo =
-    'https://commons.wikimedia.org/wiki/Special:FilePath/Cambodia%20Rice%20Fields%20%289728065269%29.jpg';
+const locationPhotoOne = '/images/home-hero-real.jpg';
+const locationPhotoTwo = '/images/location-real.jpg';
 
 type WorkHour = {
     day: string;
@@ -149,22 +147,22 @@ export default function ContactLocation() {
                     </p>
 
                     <div className="mt-5 grid gap-4 xl:grid-cols-[1.2fr_0.8fr]">
-                        <figure className="relative overflow-hidden rounded-3xl border border-[#cfb08c] bg-white p-2 shadow-[0_18px_36px_rgba(62,34,11,0.14)]">
+                        <figure className="duck-photo-card relative overflow-hidden rounded-3xl border border-[#cfb08c] bg-white p-2 shadow-[0_18px_36px_rgba(62,34,11,0.14)]">
                             <img
                                 src={locationPhotoOne}
                                 alt={t('contact.location.photoAlt1')}
-                                className="h-72 w-full rounded-2xl object-cover"
+                                className="duck-kenburns h-72 w-full rounded-2xl object-cover"
                             />
                             <figcaption className="absolute right-5 bottom-5 left-5 rounded-xl bg-[#2f190be0] px-4 py-2 text-xs font-medium tracking-[0.03em] text-[#f9e8d2] sm:text-sm">
                                 {t('contact.location.photoCaption1')}
                             </figcaption>
                         </figure>
                         <div className="grid gap-4">
-                            <figure className="relative overflow-hidden rounded-2xl border border-[#cfb08c] bg-white p-2">
+                            <figure className="duck-photo-card relative overflow-hidden rounded-2xl border border-[#cfb08c] bg-white p-2">
                                 <img
                                     src={locationPhotoTwo}
                                     alt={t('contact.location.photoAlt2')}
-                                    className="h-36 w-full rounded-xl object-cover sm:h-40"
+                                    className="duck-kenburns h-36 w-full rounded-xl object-cover sm:h-40"
                                 />
                                 <figcaption className="absolute right-4 bottom-4 left-4 rounded-lg bg-[#2f190bcf] px-3 py-1.5 text-xs text-[#f9e8d2]">
                                     {t('contact.location.photoCaption2')}

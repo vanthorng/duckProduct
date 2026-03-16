@@ -33,7 +33,7 @@ export const translations: Record<Locale, Record<string, string>> = {
             'We deliver food-grade duck eggs, premium meat cuts, roasted duck, and duck droppings herb sacks with dependable supply and clear pricing.',
         'home.ctaOrder': 'Order Online',
         'home.ctaProducts': 'View Products',
-        'home.imageAlt': 'Cambodia countryside duck farm illustration',
+        'home.imageAlt': 'Real Cambodia countryside farm landscape',
         'home.highlights.output.label': 'Daily egg output',
         'home.highlights.output.value': '1,200+',
         'home.highlights.output.desc':
@@ -70,7 +70,7 @@ export const translations: Record<Locale, Record<string, string>> = {
         'farm.title': 'Built for quality, consistency, and responsible growth.',
         'farm.subtitle':
             'We combine practical farm experience with modern hygiene, clear workflows, and reliable packaging standards for both food and farming customers.',
-        'farm.imageAlt': 'Cambodia market style duck farm supply sacks',
+        'farm.imageAlt': 'Real duck farm photo with ducks in the field',
         'farm.sceneKicker': 'Cambodia farm scene',
         'farm.sceneTitle': 'Local farming style, professional output',
         'farm.sceneDesc':
@@ -108,7 +108,7 @@ export const translations: Record<Locale, Record<string, string>> = {
         'products.new.title': 'Duck Droppings Herb now in sack format',
         'products.new.desc':
             'Available in 25kg and 50kg sacks for gardens, growers, and agricultural partners requiring nutrient support for crops.',
-        'products.imageAlt': 'Cambodia-style market supply sacks',
+        'products.imageAlt': 'Real roasted duck product photo',
         'products.item.eggs.category': 'Eggs',
         'products.item.eggs.name': 'Fresh Duck Eggs',
         'products.item.eggs.desc':
@@ -195,7 +195,7 @@ export const translations: Record<Locale, Record<string, string>> = {
         'contact.location.title': 'Farm location',
         'contact.location.label': 'Farm Address :',
         'contact.location.button': 'Open farm address in Google Maps',
-        'contact.location.imageAlt': 'Cambodia-inspired duck farm illustration',
+        'contact.location.imageAlt': 'Real Cambodia countryside farm landscape',
         'contact.location.photoAlt1':
             'Real Cambodia countryside rice fields near duck farm area',
         'contact.location.photoAlt2':
@@ -262,7 +262,7 @@ export const translations: Record<Locale, Record<string, string>> = {
             'យើងផ្គត់ផ្គង់ស៊ុតទាស្តង់ដារអាហារ សាច់ទាគុណភាពខ្ពស់ ទាអាំង និងជី Duck Droppings Herb ជាបាវ ដោយមានការផ្គត់ផ្គង់ទុកចិត្តបាន និងតម្លៃច្បាស់លាស់។',
         'home.ctaOrder': 'បញ្ជាទិញអនឡាញ',
         'home.ctaProducts': 'មើលផលិតផល',
-        'home.imageAlt': 'រូបភាពកសិដ្ឋានទានៅជនបទកម្ពុជា',
+        'home.imageAlt': 'រូបថតពិតទេសភាពកសិដ្ឋាននៅជនបទកម្ពុជា',
         'home.highlights.output.label': 'បរិមាណស៊ុតប្រចាំថ្ងៃ',
         'home.highlights.output.value': '1,200+',
         'home.highlights.output.desc':
@@ -300,7 +300,7 @@ export const translations: Record<Locale, Record<string, string>> = {
             'បង្កើតឡើងសម្រាប់គុណភាព ស្ថិរភាព និងការរីកចម្រើនប្រកបដោយទំនួលខុសត្រូវ។',
         'farm.subtitle':
             'យើងរួមបញ្ចូលបទពិសោធន៍ជាក់ស្តែង ជាមួយអនាម័យទំនើប ដំណើរការច្បាស់លាស់ និងស្តង់ដារវេចខ្ចប់ទុកចិត្តបាន សម្រាប់ទាំងអតិថិជនអាហារ និងកសិកម្ម។',
-        'farm.imageAlt': 'រូបភាពបែបទីផ្សារកម្ពុជា និងបាវផ្គត់ផ្គង់កសិដ្ឋានទា',
+        'farm.imageAlt': 'រូបថតពិតកសិដ្ឋានទា និងទានៅតំបន់វាល',
         'farm.sceneKicker': 'ទិដ្ឋភាពកសិដ្ឋានកម្ពុជា',
         'farm.sceneTitle': 'រចនាបថកសិកម្មក្នុងស្រុក ផលិតកម្មមានវិជ្ជាជីវៈ',
         'farm.sceneDesc':
@@ -338,7 +338,7 @@ export const translations: Record<Locale, Record<string, string>> = {
         'products.new.title': 'Duck Droppings Herb មានលក់ជាបាវ',
         'products.new.desc':
             'មានជាបាវ 25kg និង 50kg សម្រាប់សួនច្បារ អ្នកដាំដុះ និងដៃគូកសិកម្មដែលត្រូវការជីជាតិបន្ថែមសម្រាប់ដំណាំ។',
-        'products.imageAlt': 'រូបភាពបាវផ្គត់ផ្គង់បែបទីផ្សារកម្ពុជា',
+        'products.imageAlt': 'រូបថតពិតផលិតផលទាអាំង',
         'products.item.eggs.category': 'ស៊ុត',
         'products.item.eggs.name': 'ស៊ុតទាស្រស់',
         'products.item.eggs.desc':
@@ -420,7 +420,7 @@ export const translations: Record<Locale, Record<string, string>> = {
         'contact.location.title': 'ទីតាំងកសិដ្ឋាន',
         'contact.location.label': 'អាសយដ្ឋានកសិដ្ឋាន :',
         'contact.location.button': 'បើកទីតាំងកសិដ្ឋានក្នុង Google Maps',
-        'contact.location.imageAlt': 'រូបភាពកសិដ្ឋានទាបែបកម្ពុជា',
+        'contact.location.imageAlt': 'រូបថតពិតទេសភាពកសិដ្ឋាននៅជនបទកម្ពុជា',
         'contact.location.photoAlt1':
             'រូបភាពពិតតំបន់ជនបទកម្ពុជា ក្បែរទីតាំងកសិដ្ឋានទា',
         'contact.location.photoAlt2':
